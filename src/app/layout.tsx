@@ -27,7 +27,7 @@ export default function RootLayout({
           </ClerkLoading>
           <ClerkLoaded>
             <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col h-screen" style={{color:'white'}}>
+              <div className="flex flex-col h-screen" style={{color:'orange'}}>
                 <Navbar />
                 {children}
               </div>
