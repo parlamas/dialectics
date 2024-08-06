@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Define custom properties for theming */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,12 +17,56 @@
   }
 }
 
+/* Apply base styles to the whole document */
 body {
-  color:beige;
+  color: var(--foreground-rgb);
+  background: linear-gradient(to bottom, 
+              rgb(var(--background-start-rgb)), 
+              rgb(var(--background-end-rgb)));
+  font-family: 'Inter', sans-serif; /* Adjust based on your preference */
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
+/* Utility classes for text balance and other custom styles */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .container {
+    max-width: 1200px; /* Adjust as needed */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Responsive navbar styles */
+  .navbar {
+    @apply bg-cyan-950 text-white rounded-b-xl shadow-md;
+  }
+
+  .navbar a {
+    @apply text-white hover:text-gray-300;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      @apply p-4; /* Adjust padding for smaller screens */
+    }
+    
+    .navbar .menu {
+      @apply hidden; /* Hide menu on small screens */
+    }
+
+    .navbar .menu.active {
+      @apply block; /* Show menu when active */
+    }
+  }
+
+  @media (min-width: 769px) {
+    .navbar .menu {
+      @apply flex; /* Display menu items in a row on larger screens */
+    }
   }
 }

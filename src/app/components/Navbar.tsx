@@ -1,10 +1,4 @@
 // Navbar.tsx
-"use client";
-
-import { UserButton, useAuth } from "@clerk/nextjs";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React from "react";
 
 const Navbar = () => {
   const { userId } = useAuth();
@@ -18,47 +12,37 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-cyan-950 rounded-b-xl">
-      <ul className="flex justify-between py-4 px-6">
-        <div>
-          <Link href="/">
-            <li>Home</li>
-          </Link>
-        </div>
-        <div className="flex items-center">
-          <Link href="/client" onClick={(e) => handleLinkClick(e, '/client')}>
-            <li>Content Request</li>
-          </Link>
-        </div>
-        <div className="flex items-center">
-          <Link href="/protected/cv" onClick={(e) => handleLinkClick(e, '/protected/cv')}>
-            <li>Point</li>
-          </Link>
-        </div>
-        <div className="flex gap-6 items-center">
-          {!userId ? (
-            <>
-              <Link href="/sign-in">
-                <li>Login</li>
-              </Link>
-              <Link href="/sign-up">
-                <li>Sign Up</li>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link href="/profile">
-                <li>Profile</li>
-              </Link>
-              <li className="flex items-center">
-                <UserButton />
-              </li>
-            </>
-          )}
-        </div>
-      </ul>
-    </div>
+    <nav className="navbar container mx-auto px-4 py-3 flex items-center justify-between">
+      <Link href="/" className="text-lg font-semibold">
+        Home
+      </Link>
+      <div className="flex space-x-4 lg:space-x-6">
+        <Link href="/client" onClick={(e) => handleLinkClick(e, '/client')}>
+          <a className="hover:text-gray-300">Content Request</a>
+        </Link>
+        <Link href="/protected/cv" onClick={(e) => handleLinkClick(e, '/protected/cv')}>
+          <a className="hover:text-gray-300">Point</a>
+        </Link>
+      </div>
+      <div className="flex items-center space-x-4">
+        {!userId ? (
+          <>
+            <Link href="/sign-in">
+              <a className="hover:text-gray-300">Login</a>
+            </Link>
+            <Link href="/sign-up">
+              <a className="hover:text-gray-300">Sign Up</a>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link href="/profile">
+              <a className="hover:text-gray-300">Profile</a>
+            </Link>
+            <UserButton />
+          </>
+        )}
+      </div>
+    </nav>
   );
 };
-
-export default Navbar;
