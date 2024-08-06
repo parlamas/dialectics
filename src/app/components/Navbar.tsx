@@ -1,10 +1,19 @@
-import { UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
+import { UserButton, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Navbar = () => {
-  const { userId } = auth();
+  const { userId } = useAuth();
+  const router = useRouter();
+
+  const handleContentRequestClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!userId) {
+      e.preventDefault();
+      router.push('/sign-in');
+    }
+  };
+
   return (
     <div className="bg-cyan-950 rounded-b-xl">
       <ul className="flex justify-between py-4 px-6">
@@ -14,7 +23,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <Link href="/client">
+          <Link href="/client" onClick={handleContentRequestClick}>
             <li>Content Request</li>
           </Link>
         </div>
