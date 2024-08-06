@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className={`md:flex flex-col md:flex-row md:space-x-4 ${menuOpen ? 'block' : 'hidden'}`}>
           <div className="flex flex-col md:flex-row md:space-x-4">
             <Link href="/client" onClick={(e) => handleLinkClick(e, '/client')}>
-              <a className="hover:text-gray-300">Content Request</a>
+              <a className="hover:text-gray-300">Content Request &bull; </a>
             </Link>
             <Link href="/protected/cv" onClick={(e) => handleLinkClick(e, '/protected/cv')}>
               <a className="hover:text-gray-300">Point</a>
