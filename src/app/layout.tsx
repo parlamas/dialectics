@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./globals.css"; // Ensure this path is correct
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 import Navbar from "./components/Navbar";
 import { dark } from "@clerk/themes";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,11 +27,11 @@ export default function RootLayout({
             </div>
           </ClerkLoading>
           <ClerkLoaded>
-            <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col h-screen" style={{color:'orange'}}>
-                <Navbar />
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1">
                 {children}
-              </div>
+              </main>
             </div>
           </ClerkLoaded>
         </body>
@@ -38,5 +39,6 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
+
 
 
