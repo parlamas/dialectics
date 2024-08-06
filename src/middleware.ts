@@ -4,7 +4,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 const isProtectedRoute = createRouteMatcher([
   "/client",
   "/point",
-  "/cv.html"  // This should match the exact route path
+  "/protected/cv.html"  // This should match the exact route path
 ]);
 
 // Apply Clerk middleware to protect the routes
