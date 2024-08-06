@@ -31,7 +31,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <Link href="/cv.html" onClick={(e) => handleLinkClick(e, '/cv.html')}>
+          <Link href="/protected/cv" onClick={(e) => handleLinkClick(e, '/protected/cv')}>
             <li>Point</li>
           </Link>
         </div>
