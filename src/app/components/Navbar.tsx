@@ -15,7 +15,12 @@ const Navbar = () => {
         </div>
         <div className="flex items-center">
           <Link href="/client">
-            <li>Client Page</li>
+            <li>Content Request</li>
+          </Link>
+        </div>
+        <div className="flex items-center">
+          <Link href="https://dialectics.center/cv.html">
+            <li>Point</li>
           </Link>
         </div>
         <div className="flex gap-6 items-center">
