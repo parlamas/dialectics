@@ -10,7 +10,7 @@ const Navbar = () => {
   const { userId } = useAuth();
   const router = useRouter();
 
-  const handleContentRequestClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     if (!userId) {
       e.preventDefault();
       router.push('/sign-in');
@@ -26,12 +26,12 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <Link href="/client" onClick={handleContentRequestClick}>
+          <Link href="/client" onClick={(e) => handleLinkClick(e, '/client')}>
             <li>Content Request</li>
           </Link>
         </div>
         <div className="flex items-center">
-          <Link href="https://dialectics.center/cv.html">
+          <Link href="/point" onClick={(e) => handleLinkClick(e, '/point')}>
             <li>Point</li>
           </Link>
         </div>
