@@ -1,38 +1,29 @@
-// src/app/protected/cv/page.tsx
-import React from 'react';
+'use client';
 
-const CVPage = () => {
+import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
+
+const PointPage: React.FC = () => {
+  const { isLoaded, isSignedIn } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.push('/sign-in');
+    }
+  }, [isLoaded, isSignedIn, router]);
+
+  if (!isLoaded || !isSignedIn) {
+    return <div>Loading...</div>; // Show loading state while checking authentication
+  }
+
   return (
-    <div style={{ fontSize: '10pt' }}>
-      <head>
-        <meta charSet="utf-8" />
-        <title>CV</title>
-        <style>
-          {`
-            body { font-size: 10pt; }
-            .textColor { color: blue; }
-          `}
-        </style>
-      </head>
-      <div
-        style={{
-          width: '80%',
-          height: '1000px',
-          fontSize: '25pt',
-          backgroundColor: 'beige',
-          margin: 0,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center'
-        }}
-      >
-        <div>
-          <p className="textColor">TEST</p>
-        </div>
-      </div>
+    <div>
+      {/* Your content here */}
+      Point Content
     </div>
   );
 };
 
-export default CVPage;
+export default PointPage;
