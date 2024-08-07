@@ -1,5 +1,4 @@
-// src/app/client/ContentRequestForm.tsx
-'use client';
+//src/app/client/ContentRequestForm.tsx
 
 import React, { useState } from 'react';
 
@@ -7,51 +6,66 @@ const ContentRequestForm: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [request, setRequest] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add form submission logic here
+
+    try {
+      const response = await fetch('/api/send-email/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, request }),
+      });
+
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      setMessage('Request sent successfully!');
+      setName('');
+      setEmail('');
+      setRequest('');
+    } catch (error) {
+      setMessage(`Failed to send request: ${error.message}`);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4">
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-sm font-medium">Name</label>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="mt-1 p-2 border border-gray-300 rounded"
           required
         />
       </div>
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-sm font-medium">Email</label>
+      <div>
+        <label htmlFor="email">Email:</label>
         <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="mt-1 p-2 border border-gray-300 rounded"
           required
         />
       </div>
-      <div className="mb-4">
-        <label htmlFor="request" className="block text-sm font-medium">Request</label>
+      <div>
+        <label htmlFor="request">Request:</label>
         <textarea
           id="request"
           value={request}
           onChange={(e) => setRequest(e.target.value)}
-          className="mt-1 p-2 border border-gray-300 rounded"
-          rows={4}
           required
         />
       </div>
-      <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">Submit</button>
+      <button type="submit">Submit</button>
+      {message && <p>{message}</p>}
     </form>
   );
 };
 
 export default ContentRequestForm;
-
