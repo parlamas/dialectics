@@ -21,7 +21,8 @@ const Navbar = () => {
     <header className="bg-gray-800 text-white fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-lg font-semibold">
-          Home
+        <span style={{ fontSize: "10pt" }}>Home</span>
+
         </Link>
         <button
           className="md:hidden text-white"
@@ -33,18 +34,18 @@ const Navbar = () => {
         </button>
         <nav className={`md:flex ${menuOpen ? 'block' : 'hidden'} md:space-x-4 absolute md:relative top-full left-0 w-full md:w-auto bg-gray-800 md:bg-transparent`}>
           <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300">
-            Content Request
+          <span style={{ fontSize: "10pt" }}>Content Request</span>
           </Link>
           <Link href="/protected/cv" className="block px-4 py-2 hover:text-gray-300">
-            Point
+          <span style={{ fontSize: "10pt" }}>Point</span>
           </Link>
           {!userId ? (
             <>
               <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300">
-                Login
+                <span style={{ fontSize: "10pt" }}>Sign in</span>
               </Link>
               <Link href="/sign-up" className="block px-4 py-2 hover:text-gray-300">
-                Sign Up
+              <span style={{ fontSize: "10pt" }}>Sign up</span>
               </Link>
             </>
           ) : (
