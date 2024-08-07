@@ -33,7 +33,7 @@ const Navbar = () => {
         </button>
         <div className={`md:flex flex-col md:flex-row md:space-x-4 ${menuOpen ? 'block' : 'hidden'}`}>
           <div className="flex flex-col md:flex-row md:space-x-4">
-            <Link href="/client" className="hover:text-gray-300">
+            <Link href="/content-request" className="hover:text-gray-300">
               Content Request &nbsp; &nbsp; &bull;
             </Link>
             <Link href="/protected/cv" className="hover:text-gray-300">
@@ -66,6 +66,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
