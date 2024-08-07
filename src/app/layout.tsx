@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css"; // Ensure this path is correct
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar"; // Correct import path
 import { dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,7 +29,7 @@ export default function RootLayout({
           <ClerkLoaded>
             <div className="flex flex-col min-h-screen">
               <Navbar />
-              <main className="flex-1">
+              <main className="flex-1 pt-16"> {/* Ensure there's padding at the top */}
                 {children}
               </main>
             </div>
@@ -39,6 +39,7 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
+
 
 
 
