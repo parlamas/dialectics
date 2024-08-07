@@ -25,7 +25,6 @@ const ContentRequestForm: React.FC = () => {
       setEmail('');
       setRequest('');
     } catch (error) {
-      // TypeScript needs to know what kind of error we're dealing with
       if (error instanceof Error) {
         setMessage(`Failed to send request: ${error.message}`);
       } else {
@@ -35,48 +34,52 @@ const ContentRequestForm: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <form className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full" onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block mb-2 text-gray-700" htmlFor="name">Name</label>
-          <input
-            className="w-full px-3 py-2 border border-gray-300 rounded"
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2 text-gray-700" htmlFor="email">Email</label>
-          <input
-            className="w-full px-3 py-2 border border-gray-300 rounded"
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2 text-gray-700" htmlFor="request">Request</label>
-          <textarea
-            className="w-full px-3 py-2 border border-gray-300 rounded resize-y"
-            id="request"
-            value={request}
-            onChange={(e) => setRequest(e.target.value)}
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Submit
-        </button>
-        {message && <p className="mt-4 text-red-500">{message}</p>}
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-4 bg-white shadow-md rounded-lg">
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div className="mb-4">
+        <label htmlFor="request" className="block text-sm font-medium text-gray-700">Request (100 characters max)</label>
+        <textarea
+          id="request"
+          value={request}
+          onChange={(e) => setRequest(e.target.value)}
+          maxLength={100} // Limits the input to 100 characters
+          rows={4}
+          required
+          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
+      </div>
+      {message && <p className="text-red-500 text-sm">{message}</p>}
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+      >
+        Submit
+      </button>
+    </form>
   );
 };
 
 export default ContentRequestForm;
+
 
