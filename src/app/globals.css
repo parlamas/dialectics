@@ -17,6 +17,32 @@
   }
 }
 
+/* Ensure your header and burger-menu are fixed at the top */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50; /* Ensure it's above other content */
+}
+
+.burger-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100; /* Ensure it's above other content */
+}
+
+nav {
+  position: absolute;
+  top: 100%; /* Position below the header */
+  left: 0;
+  width: 100%;
+  background-color: #1f2937; /* Tailwind's bg-gray-800 */
+  z-index: 49; /* Just below the header */
+}
+
+
 /* Apply base styles to the whole document */
 body {
   color: var(--foreground-rgb);

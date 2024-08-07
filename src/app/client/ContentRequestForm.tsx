@@ -1,5 +1,3 @@
-// src/app/client/ContentRequestForm.tsx
-
 import React, { useState } from 'react';
 
 const ContentRequestForm: React.FC = () => {
@@ -27,6 +25,7 @@ const ContentRequestForm: React.FC = () => {
       setEmail('');
       setRequest('');
     } catch (error) {
+      // TypeScript needs to know what kind of error we're dealing with
       if (error instanceof Error) {
         setMessage(`Failed to send request: ${error.message}`);
       } else {
@@ -36,45 +35,48 @@ const ContentRequestForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          className="border border-gray-300 p-2 rounded"
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="border border-gray-300 p-2 rounded"
-        />
-      </div>
-      <div>
-        <label htmlFor="request">Request:</label>
-        <textarea
-          id="request"
-          value={request}
-          onChange={(e) => setRequest(e.target.value)}
-          required
-          className="border border-gray-300 p-2 rounded"
-        ></textarea>
-      </div>
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-        Submit
-      </button>
-      {message && <p>{message}</p>}
-    </form>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <form className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full" onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block mb-2 text-gray-700" htmlFor="name">Name</label>
+          <input
+            className="w-full px-3 py-2 border border-gray-300 rounded"
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-gray-700" htmlFor="email">Email</label>
+          <input
+            className="w-full px-3 py-2 border border-gray-300 rounded"
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 text-gray-700" htmlFor="request">Request</label>
+          <textarea
+            className="w-full px-3 py-2 border border-gray-300 rounded resize-y"
+            id="request"
+            value={request}
+            onChange={(e) => setRequest(e.target.value)}
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Submit
+        </button>
+        {message && <p className="mt-4 text-red-500">{message}</p>}
+      </form>
+    </div>
   );
 };
 
 export default ContentRequestForm;
+
