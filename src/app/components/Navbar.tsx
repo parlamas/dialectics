@@ -36,9 +36,27 @@ const Navbar = () => {
           <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300">
           <span style={{ fontSize: "10pt" }}>Content Request</span>
           </Link>
+
           <Link href="/protected/cv" className="block px-4 py-2 hover:text-gray-300">
-          <span style={{ fontSize: "10pt" }}>Point</span>
+          <span style={{ fontSize: "10pt" }}>Philosophy</span>
           </Link>
+
+          <Link href="/protected/cv" className="block px-4 py-2 hover:text-gray-300">
+          <span style={{ fontSize: "10pt" }}>Social Skills</span>
+          </Link>
+
+          <Link href="/protected/cv" className="block px-4 py-2 hover:text-gray-300">
+          <span style={{ fontSize: "10pt" }}>Languages</span>
+          </Link>
+
+          <Link href="/protected/cv" className="block px-4 py-2 hover:text-gray-300">
+          <span style={{ fontSize: "10pt" }}>Physics</span>
+          </Link>
+
+          <Link href="/protected/cv" className="block px-4 py-2 hover:text-gray-300">
+          <span style={{ fontSize: "10pt" }}>Math</span>
+          </Link>
+
           {!userId ? (
             <>
               <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300">
