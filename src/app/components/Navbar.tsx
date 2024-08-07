@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { UserButton, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
@@ -33,30 +33,27 @@ const Navbar = () => {
         </button>
         <div className={`md:flex flex-col md:flex-row md:space-x-4 ${menuOpen ? 'block' : 'hidden'}`}>
           <div className="flex flex-col md:flex-row md:space-x-4">
-            <Link href="/client" onClick={(e) => handleLinkClick(e, '/client')}>
-              <a className="hover:text-gray-300">Client</a>
+            <Link href="/client" className="hover:text-gray-300">
+              Content Request &nbsp; &nbsp; &bull;
             </Link>
-            <Link href="/content-request">
-              <a className="hover:text-gray-300">Request Content</a>
-            </Link>
-            <Link href="/protected/cv" onClick={(e) => handleLinkClick(e, '/protected/cv')}>
-              <a className="hover:text-gray-300">Point</a>
+            <Link href="/protected/cv" className="hover:text-gray-300">
+              Point
             </Link>
           </div>
           <div className="flex items-center space-x-4">
             {!userId ? (
               <>
-                <Link href="/sign-in">
-                  <a className="hover:text-gray-300">Login</a>
+                <Link href="/sign-in" className="hover:text-gray-300">
+                  Login
                 </Link>
-                <Link href="/sign-up">
-                  <a className="hover:text-gray-300">Sign Up</a>
+                <Link href="/sign-up" className="hover:text-gray-300">
+                  Sign Up
                 </Link>
               </>
             ) : (
               <>
-                <Link href="/profile">
-                  <a className="hover:text-gray-300">Profile</a>
+                <Link href="/profile" className="hover:text-gray-300">
+                  Profile
                 </Link>
                 <UserButton />
               </>
@@ -69,4 +66,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 

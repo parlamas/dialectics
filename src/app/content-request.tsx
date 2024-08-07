@@ -1,6 +1,6 @@
-// src/pages/content-request.tsx
+// src/app/content-request.tsx
 
-import ContentRequestForm from '../app/client/ContentRequestForm';
+import ContentRequestForm from './client/ContentRequestForm';
 
 const ContentRequestPage: React.FC = () => {
   return (
@@ -11,3 +11,4 @@ const ContentRequestPage: React.FC = () => {
 };
 
 export default ContentRequestPage;
+
