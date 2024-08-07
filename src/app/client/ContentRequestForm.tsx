@@ -1,4 +1,4 @@
-//src/app/client/ContentRequestForm.tsx
+// src/app/client/ContentRequestForm.tsx
 
 import React, { useState } from 'react';
 
@@ -12,7 +12,7 @@ const ContentRequestForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/send-email/send-email', {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, request }),
@@ -27,12 +27,16 @@ const ContentRequestForm: React.FC = () => {
       setEmail('');
       setRequest('');
     } catch (error) {
-      setMessage(`Failed to send request: ${error.message}`);
+      if (error instanceof Error) {
+        setMessage(`Failed to send request: ${error.message}`);
+      } else {
+        setMessage('Failed to send request: Unknown error');
+      }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name">Name:</label>
         <input
@@ -41,6 +45,7 @@ const ContentRequestForm: React.FC = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          className="border border-gray-300 p-2 rounded"
         />
       </div>
       <div>
@@ -51,6 +56,7 @@ const ContentRequestForm: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="border border-gray-300 p-2 rounded"
         />
       </div>
       <div>
@@ -60,9 +66,12 @@ const ContentRequestForm: React.FC = () => {
           value={request}
           onChange={(e) => setRequest(e.target.value)}
           required
-        />
+          className="border border-gray-300 p-2 rounded"
+        ></textarea>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+        Submit
+      </button>
       {message && <p>{message}</p>}
     </form>
   );
