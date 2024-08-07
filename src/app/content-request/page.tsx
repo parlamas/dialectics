@@ -1,9 +1,9 @@
-// src/app/content-request/page.tsx
 'use client'; // Ensure this component is client-side
 
 import React, { useEffect, useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import Head from 'next/head'; // Import Head from next/head
 import ContentRequestForm from '../client/ContentRequestForm';
 
 const ContentRequestPage: React.FC = () => {
@@ -27,9 +27,14 @@ const ContentRequestPage: React.FC = () => {
 
   return (
     <div>
+      <Head>
+        <title>Dialectics Center</title>
+      </Head>
       <ContentRequestForm />
     </div>
   );
 };
 
 export default ContentRequestPage;
+
+

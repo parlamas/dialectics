@@ -70,6 +70,22 @@ body {
   padding: 0;
 }
 
+/* Ensure the form has a higher z-index than the menu */
+form {
+  position: relative; /* Ensure the form is positioned */
+  z-index: 1000; /* Set a high z-index for the form */
+}
+
+/* Ensure the menu has a lower z-index */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 500; /* Set a lower z-index for the menu */
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -1,73 +1,47 @@
 'use client';
 
+import React, { useState } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import SubMenu from "./SubMenu";
 
-const SubMenu = ({ items, label }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="relative group">
-      <button onClick={() => setIsOpen(!isOpen)} className="block px-4 py-2 hover:text-gray-300 text-8pt">
-        {label}
-      </button>
-      <div className={`absolute left-0 top-full bg-gray-700 text-white py-2 rounded-md shadow-lg z-10 ${isOpen ? 'block' : 'hidden'} group-hover:block`}>
-        {items.map((item, index) => (
-          <Link key={index} href={item.href} className="block px-4 py-2 hover:text-gray-300 text-8pt">
-            {item.label}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const { userId } = useAuth();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    if (!userId) {
-      e.preventDefault();
-      router.push('/sign-in');
-    }
-  };
-
-  const subMenuItemsPhilosophy = [
+  const philosophyItems = [
     { href: "/philosophy/dialectics", label: "Dialectics" },
     { href: "/philosophy/horistics", label: "Horistics" },
     { href: "/philosophy/ethics", label: "Ethics" },
     { href: "/philosophy/politics", label: "Politics" },
     { href: "/philosophy/economics", label: "Economics" },
-    { href: "/philosophy/religion", label: "Religion" },
   ];
 
-  const subMenuItemsHistory = [
-    { href: "/history/classical-greek-history", label: "Classical Greek History" },
+  const historyItems = [
+    { href: "/history/classical-greek", label: "Classical Greek History" },
     { href: "/history/byzanium", label: "Byzanium" },
-    { href: "/history/modern-greek-history", label: "Modern Greek History" },
+    { href: "/history/modern-greek", label: "Modern Greek History" },
     { href: "/history/cooking", label: "Cooking" },
   ];
 
-  const subMenuItemsMusic = [
+  const musicItems = [
     { href: "/music/nature", label: "Nature" },
     { href: "/music/speech", label: "Speech" },
     { href: "/music/metron", label: "Metron" },
     { href: "/music/playing", label: "Playing" },
   ];
 
-  const subMenuItemsPhysicalEducation = [
+  const physicalEducationItems = [
     { href: "/physical-education/mind", label: "Mind" },
     { href: "/physical-education/body", label: "Body" },
     { href: "/physical-education/beauty", label: "Beauty" },
     { href: "/physical-education/discipline", label: "Discipline" },
-    { href: "/physical-education/as-a-skill", label: "As a Skill" },
+    { href: "/physical-education/skill", label: "As a Skill" },
   ];
 
-  const subMenuItemsSocialSkills = [
+  const socialSkillsItems = [
     { href: "/social-skills/family", label: "Family" },
     { href: "/social-skills/friends", label: "Friends" },
     { href: "/social-skills/lovers", label: "Lovers" },
@@ -75,7 +49,7 @@ const Navbar = () => {
     { href: "/social-skills/army", label: "The Army" },
   ];
 
-  const subMenuItemsLanguages = [
+  const languagesItems = [
     { href: "/languages/classical-greek", label: "Classical Greek" },
     { href: "/languages/modern-greek", label: "Modern Greek" },
     { href: "/languages/english", label: "English" },
@@ -84,13 +58,13 @@ const Navbar = () => {
     { href: "/languages/chinese", label: "Chinese" },
   ];
 
-  const subMenuItemsPhysics = [
+  const physicsItems = [
     { href: "/physics/classical", label: "Classical" },
     { href: "/physics/quantum", label: "Quantum" },
     { href: "/physics/chemistry", label: "Chemistry" },
   ];
 
-  const subMenuItemsMath = [
+  const mathItems = [
     { href: "/math/perfect-numbers", label: "Perfect Numbers" },
     { href: "/math/prime-numbers", label: "Prime Numbers" },
     { href: "/math/friendly-numbers", label: "Friendly Numbers" },
@@ -98,10 +72,10 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="bg-gray-800 text-white fixed w-full top-0 left-0 z-50">
+    <header className="bg-gray-800 text-white fixed w-full top-0 left-0 z-40"> {/* Set a lower z-index */}
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold text-8pt">
-          Home
+        <Link href="/" className="text-lg font-semibold">
+          <span style={{ fontSize: "8pt" }}>Home</span>
         </Link>
         <button
           className="md:hidden text-white"
@@ -112,31 +86,29 @@ const Navbar = () => {
           </svg>
         </button>
         <nav className={`md:flex ${menuOpen ? 'block' : 'hidden'} md:space-x-4 absolute md:relative top-full left-0 w-full md:w-auto bg-gray-800 md:bg-transparent`}>
-          <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300 text-8pt">
-            Content Request
+          <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300">
+            <span style={{ fontSize: "8pt" }}>Content Request</span>
           </Link>
-
-          <SubMenu items={subMenuItemsPhilosophy} label="Philosophy" />
-          <SubMenu items={subMenuItemsHistory} label="History" />
-          <SubMenu items={subMenuItemsMusic} label="Music" />
-          <SubMenu items={subMenuItemsPhysicalEducation} label="Physical Education" />
-          <SubMenu items={subMenuItemsSocialSkills} label="Social Skills" />
-          <SubMenu items={subMenuItemsLanguages} label="Languages" />
-          <SubMenu items={subMenuItemsPhysics} label="Physics" />
-          <SubMenu items={subMenuItemsMath} label="Math" />
-
+          <SubMenu items={philosophyItems} label="Philosophy" />
+          <SubMenu items={historyItems} label="History" />
+          <SubMenu items={musicItems} label="Music" />
+          <SubMenu items={physicalEducationItems} label="Physical Education" />
+          <SubMenu items={socialSkillsItems} label="Social Skills" />
+          <SubMenu items={languagesItems} label="Languages" />
+          <SubMenu items={physicsItems} label="Physics" />
+          <SubMenu items={mathItems} label="Math" />
           {!userId ? (
             <>
-              <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300 text-8pt">
-                Sign in
+              <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300">
+                <span style={{ fontSize: "8pt" }}>Sign in</span>
               </Link>
-              <Link href="/sign-up" className="block px-4 py-2 hover:text-gray-300 text-8pt">
-                Sign up
+              <Link href="/sign-up" className="block px-4 py-2 hover:text-gray-300">
+                <span style={{ fontSize: "8pt" }}>Sign up</span>
               </Link>
             </>
           ) : (
             <>
-              <Link href="/profile" className="block px-4 py-2 hover:text-gray-300 text-8pt">
+              <Link href="/profile" className="block px-4 py-2 hover:text-gray-300">
                 Profile
               </Link>
               <UserButton />
@@ -149,3 +121,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
