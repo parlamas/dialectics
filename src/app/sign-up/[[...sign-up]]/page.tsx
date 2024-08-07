@@ -1,7 +1,7 @@
 import React from 'react';
 import { SignUp } from '@clerk/nextjs';
 import Head from 'next/head';
-import '../../styles/clerkCustomStyles.css';
+import '../../../styles/clerkCustomStyles.css';
 
 const SignUpPage: React.FC = () => {
   return (

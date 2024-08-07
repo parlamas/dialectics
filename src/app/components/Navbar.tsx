@@ -14,6 +14,7 @@ const Navbar: React.FC = () => {
   const philosophyItems = [
     { href: "/philosophy/dialectics", label: "Dialectics" },
     { href: "/philosophy/horistics", label: "Horistics" },
+    { href: "/philosophy/etymology", label: "Etymology" },
     { href: "/philosophy/ethics", label: "Ethics" },
     { href: "/philosophy/politics", label: "Politics" },
     { href: "/philosophy/economics", label: "Economics" },
