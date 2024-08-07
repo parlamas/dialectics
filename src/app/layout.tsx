@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css"; // Ensure this path is correct
+import "./globals.css";
+import "../styles/clerkCustomStyles.css";
 import { ClerkProvider, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
-import Navbar from "./components/Navbar"; // Correct import path
+import Navbar from "./components/Navbar";
 import { dark } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,6 +21,13 @@ export default function RootLayout({
   return (
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en">
+        <head>
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="manifest" href="/site.webmanifest" />
+        </head>
         <body className={inter.className}>
           <ClerkLoading>
             <div className="flex items-center justify-center h-screen text-2xl">
@@ -39,6 +47,8 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
+
+
 
 
 

@@ -1,9 +1,16 @@
-import { SignUp } from "@clerk/nextjs";
+import React from 'react';
+import { SignUp } from '@clerk/nextjs';
+import '../../globals.css'; // Ensure this path is correct
 
-export default function Page() {
+const SignUpPage = () => {
   return (
-    <div className="flex items-center justify-center h-full">
-      <SignUp afterSignOutUrl="/" />
+    <div className="center-container">
+      <div className="clerk-custom">
+        <SignUp />
+      </div>
     </div>
   );
-}
+};
+
+export default SignUpPage;
+

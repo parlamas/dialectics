@@ -4,13 +4,21 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 const isProtectedRoute = createRouteMatcher([
   "/client",
   "/point",
-  "/protected/cv.html"  // This should match the exact route path
+  "/protected/cv.html", // Ensure this matches your actual route structure
+  "/philosophy/(.*)",
+  "/history/(.*)",
+  "/music/(.*)",
+  "/physical-education/(.*)",
+  "/social-skills/(.*)",
+  "/languages/(.*)",
+  "/physics/(.*)",
+  "/math/(.*)"
 ]);
 
 // Apply Clerk middleware to protect the routes
 export default clerkMiddleware((auth, req) => {
   if (isProtectedRoute(req)) {
-    auth().protect();  // Redirects unauthenticated users to the sign-in page
+    auth().protect(); // Redirects unauthenticated users to the sign-in page
   }
 });
 
@@ -21,3 +29,4 @@ export const config = {
     '/(api|trpc)(.*)',
   ],
 };
+

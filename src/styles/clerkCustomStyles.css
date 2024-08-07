@@ -1,0 +1,4 @@
+.clerk-custom {
+  transform: scale(0.65); /* Scale down by 35% */
+  transform-origin: top left; /* Adjust the origin point */
+}

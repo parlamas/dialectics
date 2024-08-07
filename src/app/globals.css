@@ -1,4 +1,4 @@
-/* scr/app/globals.css */
+/* src/app/globals.css */
 
 @tailwind base;
 @tailwind components;
@@ -44,20 +44,32 @@ nav {
   z-index: 49; /* Just below the header */
 }
 
+.text-8pt {
+  font-size: 8pt;
+}
 
-/* Apply base styles to the whole document */
+/* Centering container with top margin */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the start (top) */
+  min-height: 100vh;
+  padding-top: 50px; /* Adjust this value to move the content down */
+}
+
 body {
   color: var(--foreground-rgb);
-  background: linear-gradient(to bottom, 
-              rgb(var(--background-start-rgb)), 
-              rgb(var(--background-end-rgb)));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
   font-family: 'Inter', sans-serif; /* Adjust based on your preference */
   line-height: 1.6;
   margin: 0;
   padding: 0;
 }
 
-/* Utility classes for text balance and other custom styles */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -69,7 +81,6 @@ body {
     margin-right: auto;
   }
 
-  /* Responsive navbar styles */
   .navbar {
     @apply bg-cyan-950 text-white rounded-b-xl shadow-md;
   }
@@ -82,7 +93,7 @@ body {
     .navbar {
       @apply p-4; /* Adjust padding for smaller screens */
     }
-    
+
     .navbar .menu {
       @apply hidden; /* Hide menu on small screens */
     }
@@ -98,3 +109,4 @@ body {
     }
   }
 }
+
