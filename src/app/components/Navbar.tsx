@@ -11,6 +11,7 @@ const Navbar: React.FC = () => {
   const { userId } = useAuth();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null); // State to track the open submenu
 
   const philosophyItems = [
     { href: "/philosophy/dialectics", text: "Dialectics" },
@@ -73,6 +74,10 @@ const Navbar: React.FC = () => {
     { href: "/math/trigonometry", text: "Trigonometry" },
   ];
 
+  const handleSubMenuClick = (label: string) => {
+    setOpenSubMenu(openSubMenu === label ? null : label);
+  };
+
   return (
     <header className="navbar bg-gray-800 text-white fixed w-full top-0 left-0 z-40">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -91,14 +96,14 @@ const Navbar: React.FC = () => {
           <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300 menu-item">
             <span>Content Request</span>
           </Link>
-          <SubMenu items={philosophyItems} label="Philosophy" />
-          <SubMenu items={historyItems} label="History" />
-          <SubMenu items={musicItems} label="Music" />
-          <SubMenu items={physicalEducationItems} label="Physical Education" />
-          <SubMenu items={socialSkillsItems} label="Social Skills" />
-          <SubMenu items={languagesItems} label="Languages" />
-          <SubMenu items={physicsItems} label="Physics" />
-          <SubMenu items={mathItems} label="Math" />
+          <SubMenu items={philosophyItems} label="Philosophy" isOpen={openSubMenu === 'Philosophy'} onClick={() => handleSubMenuClick('Philosophy')} />
+          <SubMenu items={historyItems} label="History" isOpen={openSubMenu === 'History'} onClick={() => handleSubMenuClick('History')} />
+          <SubMenu items={musicItems} label="Music" isOpen={openSubMenu === 'Music'} onClick={() => handleSubMenuClick('Music')} />
+          <SubMenu items={physicalEducationItems} label="Physical Education" isOpen={openSubMenu === 'Physical Education'} onClick={() => handleSubMenuClick('Physical Education')} />
+          <SubMenu items={socialSkillsItems} label="Social Skills" isOpen={openSubMenu === 'Social Skills'} onClick={() => handleSubMenuClick('Social Skills')} />
+          <SubMenu items={languagesItems} label="Languages" isOpen={openSubMenu === 'Languages'} onClick={() => handleSubMenuClick('Languages')} />
+          <SubMenu items={physicsItems} label="Physics" isOpen={openSubMenu === 'Physics'} onClick={() => handleSubMenuClick('Physics')} />
+          <SubMenu items={mathItems} label="Math" isOpen={openSubMenu === 'Math'} onClick={() => handleSubMenuClick('Math')} />
           {!userId ? (
             <>
               <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300 menu-item">

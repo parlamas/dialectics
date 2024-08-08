@@ -1,19 +1,18 @@
 // src/app/components/SubMenu.tsx
-// src/app/components/SubMenu.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
 interface SubMenuProps {
   items: { href: string; text: string }[];
   label: string;
+  isOpen: boolean;
+  onClick: () => void;
 }
 
-const SubMenu: React.FC<SubMenuProps> = ({ items, label }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const SubMenu: React.FC<SubMenuProps> = ({ items, label, isOpen, onClick }) => {
   return (
     <div className="relative">
-      <button onClick={() => setIsOpen(!isOpen)} className="menu-item">
+      <button onClick={onClick} className="menu-item">
         {label}
       </button>
       {isOpen && (
@@ -32,4 +31,5 @@ const SubMenu: React.FC<SubMenuProps> = ({ items, label }) => {
 };
 
 export default SubMenu;
+
 

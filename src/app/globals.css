@@ -168,7 +168,7 @@ header {
 }
 
 .submenu-container a:hover {
-  background-color: #d3bfa5; /* Slightly darker beige for hover effect */
+  background-color: yellowgreen; /* Slightly darker beige for hover effect */
   color: black;
 }
 
