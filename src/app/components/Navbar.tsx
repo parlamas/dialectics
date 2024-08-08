@@ -146,10 +146,21 @@ const Navbar: React.FC = () => {
         </nav>
       </div>
       {formOpen && (
-        <div className="absolute bg-white text-black p-4 shadow-lg rounded">
+        <div className="absolute top-16 left-0 right-0 bg-white text-black p-4 shadow-lg rounded mx-4 md:mx-auto md:w-1/2">
           <h2>Content Request Form</h2>
           {/* Your form content here */}
-          <button onClick={() => setFormOpen(false)}>Close Form</button>
+          <form>
+            <div className="mb-4">
+              <label htmlFor="name" className="block text-gray-700">Name</label>
+              <input type="text" id="name" className="w-full px-3 py-2 border rounded" />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="request" className="block text-gray-700">Request</label>
+              <textarea id="request" className="w-full px-3 py-2 border rounded"></textarea>
+            </div>
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
+            <button type="button" className="ml-4 text-red-500 px-4 py-2 rounded hover:text-red-700" onClick={() => setFormOpen(false)}>Close Form</button>
+          </form>
         </div>
       )}
     </header>

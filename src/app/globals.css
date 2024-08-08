@@ -145,10 +145,12 @@ header {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* globals.css */
-
+/* Ensure consistent styling for your navbar and submenu */
 .navbar {
   z-index: 40; /* Ensure navbar has a lower z-index */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .submenu-container {
@@ -171,6 +173,34 @@ header {
   background-color: yellowgreen; /* Slightly darker beige for hover effect */
   color: black;
 }
+
+.menu-item {
+  font-size: 8pt;
+  margin-right: 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+nav.md\\:space-x-4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav.md\\:space-x-4 > * {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.absolute.top-16.left-0.right-0 {
+  z-index: 50; /* Ensure the form appears above other content */
+}
+
 
 
 
