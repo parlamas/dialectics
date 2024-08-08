@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="bg-gray-800 text-white fixed w-full top-0 left-0 z-40"> {/* Set a lower z-index */}
+    <header className="navbar bg-gray-800 text-white fixed w-full top-0 left-0 z-40"> {/* Set a lower z-index */}
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-lg font-semibold">
           <span style={{ fontSize: "8pt" }}>Home</span>
@@ -122,4 +122,5 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
 

@@ -140,6 +140,34 @@ header {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* globals.css */
+
+.navbar {
+  z-index: 40; /* Ensure navbar has a lower z-index */
+}
+
+.submenu-container {
+  background-color: gold;
+  color: black;
+  border-radius: 5px; /* Optional: for rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: for subtle shadow */
+  z-index: 100; /* Ensure submenus have a higher z-index */
+  position: absolute; /* Ensure proper positioning */
+}
+
+.submenu-container a {
+  color: black;
+  text-decoration: none;
+  display: block; /* Ensure the links are block elements */
+  padding: 8px 12px; /* Add padding for better spacing */
+}
+
+.submenu-container a:hover {
+  background-color: #d3bfa5; /* Slightly darker beige for hover effect */
+  color: black;
+}
+
+
 
 }
 

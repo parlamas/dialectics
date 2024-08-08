@@ -7,8 +7,8 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-gray-100 flex justify-center">
-      <div className="text-2xl bg-white text-black p-8 rounded shadow-lg w-11/12 max-w-6xl mt-4" style={{ fontSize: "10pt", lineHeight:"25px" }}>
+    <div className="relative min-h-screen bg-gray-100 flex justify-center" style={{ zIndex: 30 }}>
+      <div className="text-2xl bg-white text-black p-8 rounded shadow-lg w-11/12 max-w-6xl mt-4" style={{ paddingRight: '170px', fontSize: "10pt", lineHeight: "25px" }}>
         <div className="relative" style={{ float: 'left', marginRight: '20px' }}>
           <img 
             src="/images/socrates-agora.webp" // Ensure this is the correct path to your image in the public directory
@@ -44,9 +44,6 @@ export default function Home() {
               }}
             />
           </div>
-           
-          
-
           <div className="tooltiptext" style={{ lineHeight: "15px", fontSize: "8pt", color: "brown", fontWeight: "bold" }}>
             Ο Σωκρατης συνομιλει στην αγορα με<br />φιλους και εχθρους<hr />
             Socrates conversing with friends and<br />
@@ -63,7 +60,7 @@ export default function Home() {
         <p>It is not about telling you what to think and do, but it is about showing you how to think and approach implementing solutions that make sense.</p>
         <p>Here you will find content on philosophy, music, physical education, social skills, languages, physics, and math.</p>
       </div>
-      <div className="absolute top-4 right-4 bg-blue-500 text-white p-4 rounded shadow-lg w-[150px] h-[150px]">
+      <div className="absolute top-4 right-4 bg-blue-500 text-white p-4 rounded shadow-lg w-[150px] h-[150px]" style={{ zIndex: 50 }}>
         <h2 className="text-sm font-bold">Upcoming Articles</h2>
         <ul className="text-xs">
           <li style={{color:"yellow", fontSize:"8pt"}}>Erdogan speaks right on Jewish atrocities, but he is nevertheless a hypocrite writ large...</li>
@@ -72,12 +69,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
