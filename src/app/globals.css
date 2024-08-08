@@ -184,4 +184,12 @@ header {
   }
 }
 
+/* Reduce form size for mobile devices */
+@media (max-width: 768px) {
+  .form-container {
+    width: 60%;
+    padding: 1rem;
+  }
+}
+
 
