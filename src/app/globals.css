@@ -187,8 +187,20 @@ header {
 /* Reduce form size for mobile devices */
 @media (max-width: 768px) {
   .form-container {
-    width: 60%;
+    width: 80%; /* Reduce form size on smaller screens */
     padding: 1rem;
+  }
+
+  .navbar .menu {
+    padding-left: 1rem; /* Add padding to the left of the menu */
+  }
+
+  .submenu-container {
+    position: fixed; /* Make sure submenus are fixed on mobile */
+    top: 50px; /* Position below the navbar */
+    left: 0;
+    right: 0;
+    z-index: 50; /* Ensure it appears above other content */
   }
 }
 
