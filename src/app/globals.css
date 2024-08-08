@@ -1,5 +1,5 @@
 /* src/app/globals.css */
-
+/* Tailwind CSS Base, Components, and Utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,6 +69,8 @@ body {
   margin: 0;
   padding: 0;
 }
+
+
 
 /* Ensure the form has a higher z-index than the menu */
 form {
