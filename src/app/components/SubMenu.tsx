@@ -1,26 +1,32 @@
 // src/app/components/SubMenu.tsx
+// src/app/components/SubMenu.tsx
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-const SubMenu = ({ items, label }) => {
+interface SubMenuProps {
+  items: { href: string; text: string }[];
+  label: string;
+}
+
+const SubMenu: React.FC<SubMenuProps> = ({ items, label }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
-      className="relative group" 
-      onMouseEnter={() => setIsOpen(true)} 
-      onMouseLeave={() => setIsOpen(false)}
-    >
-      <button onClick={() => setIsOpen(!isOpen)} className="block px-4 py-2 hover:text-gray-300">
-        <span style={{ fontSize: "8pt" }}>{label}</span>
+    <div className="relative">
+      <button onClick={() => setIsOpen(!isOpen)} className="menu-item">
+        {label}
       </button>
-      <div className={`absolute left-0 top-full py-2 rounded-md shadow-lg ${isOpen ? 'block' : 'hidden'} submenu-container`}>
-        {items.map((item, index) => (
-          <Link key={index} href={item.href} className="block px-4 py-2">
-            <span style={{ fontSize: "8pt" }}>{item.label}</span>
-          </Link>
-        ))}
-      </div>
+      {isOpen && (
+        <ul className="absolute bg-gray-800 text-white shadow-lg rounded">
+          {items.map((item, index) => (
+            <li key={index} className="menu-item">
+              <Link href={item.href}>
+                <span className="block px-4 py-2 hover:text-gray-300">{item.text}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

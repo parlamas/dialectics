@@ -1,3 +1,4 @@
+// src/app/components/Navbar.tsx
 'use client';
 
 import React, { useState } from "react";
@@ -12,71 +13,71 @@ const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const philosophyItems = [
-    { href: "/philosophy/dialectics", label: "Dialectics" },
-    { href: "/philosophy/horistics", label: "Horistics" },
-    { href: "/philosophy/etymology", label: "Etymology" },
-    { href: "/philosophy/ethics", label: "Ethics" },
-    { href: "/philosophy/politics", label: "Politics" },
-    { href: "/philosophy/economics", label: "Economics" },
+    { href: "/philosophy/dialectics", text: "Dialectics" },
+    { href: "/philosophy/horistics", text: "Horistics" },
+    { href: "/philosophy/etymology", text: "Etymology" },
+    { href: "/philosophy/ethics", text: "Ethics" },
+    { href: "/philosophy/politics", text: "Politics" },
+    { href: "/philosophy/economics", text: "Economics" },
   ];
 
   const historyItems = [
-    { href: "/history/classical-greek", label: "Classical Greek History" },
-    { href: "/history/byzanium", label: "Byzanium" },
-    { href: "/history/modern-greek", label: "Modern Greek History" },
-    { href: "/history/cooking", label: "Cooking" },
+    { href: "/history/classical-greek", text: "Classical Greek History" },
+    { href: "/history/byzanium", text: "Byzanium" },
+    { href: "/history/modern-greek", text: "Modern Greek History" },
+    { href: "/history/cooking", text: "Cooking" },
   ];
 
   const musicItems = [
-    { href: "/music/nature", label: "Nature" },
-    { href: "/music/speech", label: "Speech" },
-    { href: "/music/metron", label: "Metron" },
-    { href: "/music/playing", label: "Playing" },
+    { href: "/music/nature", text: "Nature" },
+    { href: "/music/speech", text: "Speech" },
+    { href: "/music/metron", text: "Metron" },
+    { href: "/music/playing", text: "Playing" },
   ];
 
   const physicalEducationItems = [
-    { href: "/physical-education/mind", label: "Mind" },
-    { href: "/physical-education/body", label: "Body" },
-    { href: "/physical-education/beauty", label: "Beauty" },
-    { href: "/physical-education/discipline", label: "Discipline" },
-    { href: "/physical-education/skill", label: "As a Skill" },
+    { href: "/physical-education/mind", text: "Mind" },
+    { href: "/physical-education/body", text: "Body" },
+    { href: "/physical-education/beauty", text: "Beauty" },
+    { href: "/physical-education/discipline", text: "Discipline" },
+    { href: "/physical-education/skill", text: "As a Skill" },
   ];
 
   const socialSkillsItems = [
-    { href: "/social-skills/family", label: "Family" },
-    { href: "/social-skills/friends", label: "Friends" },
-    { href: "/social-skills/lovers", label: "Lovers" },
-    { href: "/social-skills/work", label: "Work" },
-    { href: "/social-skills/army", label: "The Army" },
+    { href: "/social-skills/family", text: "Family" },
+    { href: "/social-skills/friends", text: "Friends" },
+    { href: "/social-skills/lovers", text: "Lovers" },
+    { href: "/social-skills/work", text: "Work" },
+    { href: "/social-skills/army", text: "The Army" },
   ];
 
   const languagesItems = [
-    { href: "/languages/classical-greek", label: "Classical Greek" },
-    { href: "/languages/modern-greek", label: "Modern Greek" },
-    { href: "/languages/english", label: "English" },
-    { href: "/languages/spanish", label: "Spanish" },
-    { href: "/languages/danish", label: "Danish" },
-    { href: "/languages/chinese", label: "Chinese" },
+    { href: "/languages/classical-greek", text: "Classical Greek" },
+    { href: "/languages/modern-greek", text: "Modern Greek" },
+    { href: "/languages/english", text: "English" },
+    { href: "/languages/spanish", text: "Spanish" },
+    { href: "/languages/danish", text: "Danish" },
+    { href: "/languages/chinese", text: "Chinese" },
   ];
 
   const physicsItems = [
-    { href: "/physics/classical", label: "Classical" },
-    { href: "/physics/quantum", label: "Quantum" },
-    { href: "/physics/chemistry", label: "Chemistry" },
+    { href: "/physics/classical", text: "Classical" },
+    { href: "/physics/quantum", text: "Quantum" },
+    { href: "/physics/chemistry", text: "Chemistry" },
   ];
 
   const mathItems = [
-    { href: "/math/perfect-numbers", label: "Perfect Numbers" },
-    { href: "/math/prime-numbers", label: "Prime Numbers" },
-    { href: "/math/friendly-numbers", label: "Friendly Numbers" },
-    { href: "/math/trigonometry", label: "Trigonometry" },
+    { href: "/math/perfect-numbers", text: "Perfect Numbers" },
+    { href: "/math/prime-numbers", text: "Prime Numbers" },
+    { href: "/math/friendly-numbers", text: "Friendly Numbers" },
+    { href: "/math/trigonometry", text: "Trigonometry" },
   ];
 
   return (
-    <header className="navbar bg-gray-800 text-white fixed w-full top-0 left-0 z-40"> {/* Set a lower z-index */}
+    <header className="navbar bg-gray-800 text-white fixed w-full top-0 left-0 z-40">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold">
-          <span style={{ fontSize: "8pt" }}>Home</span>
+        <Link href="/" className="text-lg font-semibold menu-item">
+          <span>Home</span>
         </Link>
         <button
           className="md:hidden text-white"
@@ -87,8 +88,8 @@ const Navbar: React.FC = () => {
           </svg>
         </button>
         <nav className={`md:flex ${menuOpen ? 'block' : 'hidden'} md:space-x-4 absolute md:relative top-full left-0 w-full md:w-auto bg-gray-800 md:bg-transparent`}>
-          <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300">
-            <span style={{ fontSize: "8pt" }}>Content Request</span>
+          <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300 menu-item">
+            <span>Content Request</span>
           </Link>
           <SubMenu items={philosophyItems} label="Philosophy" />
           <SubMenu items={historyItems} label="History" />
@@ -100,16 +101,16 @@ const Navbar: React.FC = () => {
           <SubMenu items={mathItems} label="Math" />
           {!userId ? (
             <>
-              <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300">
-                <span style={{ fontSize: "8pt" }}>Sign in</span>
+              <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300 menu-item">
+                <span>Sign in</span>
               </Link>
-              <Link href="/sign-up" className="block px-4 py-2 hover:text-gray-300">
-                <span style={{ fontSize: "8pt" }}>Sign up</span>
+              <Link href="/sign-up" className="block px-4 py-2 hover:text-gray-300 menu-item">
+                <span>Sign up</span>
               </Link>
             </>
           ) : (
             <>
-              <Link href="/profile" className="block px-4 py-2 hover:text-gray-300">
+              <Link href="/profile" className="block px-4 py-2 hover:text-gray-300 menu-item">
                 Profile
               </Link>
               <UserButton />
@@ -122,5 +123,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
-

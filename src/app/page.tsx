@@ -1,5 +1,6 @@
 // src/app/page.tsx
 import './globals.css';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Dialectics Center',
@@ -10,10 +11,12 @@ export default function Home() {
     <div className="relative min-h-screen bg-gray-100 flex justify-center" style={{ zIndex: 30 }}>
       <div className="text-2xl bg-white text-black p-8 rounded shadow-lg w-11/12 max-w-6xl mt-4" style={{ paddingRight: '170px', fontSize: "10pt", lineHeight: "25px" }}>
         <div className="relative" style={{ float: 'left', marginRight: '20px' }}>
-          <img 
+          <Image
             src="/images/socrates-agora.webp" // Ensure this is the correct path to your image in the public directory
             alt="Socrates conversing with others in the agora" 
-            style={{ width: '205px', height: '205px', maxWidth: '100%' }} // Inline styles for precise control
+            width={205}
+            height={205}
+            style={{ maxWidth: '100%' }} // Inline styles for precise control
           />
           {/* Speech Bubble 1 */}
           <div 
@@ -69,3 +72,4 @@ export default function Home() {
     </div>
   );
 }
+
