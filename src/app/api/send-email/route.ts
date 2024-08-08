@@ -1,5 +1,4 @@
 // src/app/api/send-email/route.ts
-
 import type { NextRequest } from 'next/server';
 import nodemailer from 'nodemailer';
 

@@ -13,6 +13,8 @@ const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null); // State to track the open submenu
   const [formOpen, setFormOpen] = useState(false); // State to track the form visibility
+  const [formData, setFormData] = useState({ name: '', email: '', request: '' });
+  const [message, setMessage] = useState<string | null>(null); // State to track success message
   const menuRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -80,11 +82,44 @@ const Navbar: React.FC = () => {
   const handleSubMenuClick = (label: string) => {
     setOpenSubMenu(openSubMenu === label ? null : label);
     setFormOpen(false); // Close the form when opening a submenu
+    setMessage(null); // Clear message when submenu is clicked
   };
 
   const handleFormClick = () => {
     setFormOpen(!formOpen);
     setOpenSubMenu(null); // Close the submenu when opening the form
+    setMessage(null); // Clear message when form is opened
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setMessage('You emailed successfully.');
+        setFormData({ name: '', email: '', request: '' }); // Clear form
+      } else {
+        setMessage('Failed to send email.');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setMessage('An error occurred while sending the email.');
+    }
   };
 
   useEffect(() => {
@@ -152,19 +187,46 @@ const Navbar: React.FC = () => {
       {formOpen && (
         <div ref={formRef} className="absolute top-16 left-0 right-0 bg-white text-black p-4 shadow-lg rounded mx-4 md:mx-auto md:w-1/2">
           <h2>Content Request Form</h2>
-          {/* Your form content here */}
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block text-gray-700">Name</label>
-              <input type="text" id="name" className="w-full px-3 py-2 border rounded" />
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border rounded"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-gray-700">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border rounded"
+                required
+              />
             </div>
             <div className="mb-4">
               <label htmlFor="request" className="block text-gray-700">Request</label>
-              <textarea id="request" className="w-full px-3 py-2 border rounded"></textarea>
+              <textarea
+                id="request"
+                name="request"
+                value={formData.request}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border rounded"
+                required
+              ></textarea>
             </div>
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Submit</button>
             <button type="button" className="ml-4 text-red-500 px-4 py-2 rounded hover:text-red-700" onClick={() => setFormOpen(false)}>Close Form</button>
           </form>
+          {message && <p className="mt-4 text-green-500">{message}</p>}
         </div>
       )}
     </header>
@@ -172,4 +234,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
