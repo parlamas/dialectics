@@ -12,6 +12,7 @@ const Navbar: React.FC = () => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null); // State to track the open submenu
+  const [formOpen, setFormOpen] = useState(false); // State to track the form visibility
   const menuRef = useRef<HTMLDivElement>(null);
 
   const philosophyItems = [
@@ -77,12 +78,19 @@ const Navbar: React.FC = () => {
 
   const handleSubMenuClick = (label: string) => {
     setOpenSubMenu(openSubMenu === label ? null : label);
+    setFormOpen(false); // Close the form when opening a submenu
+  };
+
+  const handleFormClick = () => {
+    setFormOpen(!formOpen);
+    setOpenSubMenu(null); // Close the submenu when opening the form
   };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setOpenSubMenu(null);
+        setFormOpen(false);
       }
     };
 
@@ -107,9 +115,9 @@ const Navbar: React.FC = () => {
           </svg>
         </button>
         <nav className={`md:flex ${menuOpen ? 'block' : 'hidden'} md:space-x-4 absolute md:relative top-full left-0 w-full md:w-auto bg-gray-800 md:bg-transparent`}>
-          <Link href="/content-request" className="block px-4 py-2 hover:text-gray-300 menu-item">
+          <button onClick={handleFormClick} className="block px-4 py-2 hover:text-gray-300 menu-item">
             <span>Content Request</span>
-          </Link>
+          </button>
           <SubMenu items={philosophyItems} label="Philosophy" isOpen={openSubMenu === 'Philosophy'} onClick={() => handleSubMenuClick('Philosophy')} />
           <SubMenu items={historyItems} label="History" isOpen={openSubMenu === 'History'} onClick={() => handleSubMenuClick('History')} />
           <SubMenu items={musicItems} label="Music" isOpen={openSubMenu === 'Music'} onClick={() => handleSubMenuClick('Music')} />
@@ -137,6 +145,13 @@ const Navbar: React.FC = () => {
           )}
         </nav>
       </div>
+      {formOpen && (
+        <div className="absolute bg-white text-black p-4 shadow-lg rounded">
+          <h2>Content Request Form</h2>
+          {/* Your form content here */}
+          <button onClick={() => setFormOpen(false)}>Close Form</button>
+        </div>
+      )}
     </header>
   );
 };
