@@ -1,7 +1,7 @@
 // src/app/components/Navbar.tsx
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ const Navbar: React.FC = () => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null); // State to track the open submenu
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const philosophyItems = [
     { href: "/philosophy/dialectics", text: "Dialectics" },
@@ -78,9 +79,22 @@ const Navbar: React.FC = () => {
     setOpenSubMenu(openSubMenu === label ? null : label);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenSubMenu(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className="navbar bg-gray-800 text-white fixed w-full top-0 left-0 z-40">
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div ref={menuRef} className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-lg font-semibold menu-item">
           <span>Home</span>
         </Link>
