@@ -1,4 +1,4 @@
-// src/app/components/Navbar.tsx
+// src/app/components/Navba
 'use client';
 
 import React, { useState, useEffect, useRef } from "react";
@@ -80,7 +80,11 @@ const Navbar: React.FC = () => {
   ];
 
   const handleSubMenuClick = (label: string) => {
-    setOpenSubMenu(openSubMenu === label ? null : label);
+    if (openSubMenu === label) {
+      setOpenSubMenu(null);
+    } else {
+      setOpenSubMenu(label);
+    }
     setFormOpen(false); // Close the form when opening a submenu
     setMessage(null); // Clear message when submenu is clicked
   };
