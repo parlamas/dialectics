@@ -1,4 +1,5 @@
 // src/app/components/SubMenu.tsx
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -16,7 +17,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ items, label, isOpen, onClick }) => {
         {label}
       </button>
       {isOpen && (
-        <ul className="absolute bg-gold text-black shadow-lg rounded">
+        <ul className="submenu-container">
           {items.map((item, index) => (
             <li key={index} className="menu-item">
               <Link href={item.href}>
