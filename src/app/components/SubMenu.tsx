@@ -16,7 +16,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ items, label, isOpen, onClick }) => {
         {label}
       </button>
       {isOpen && (
-        <ul className="submenu-container">
+        <ul className="absolute bg-gold text-black shadow-lg rounded">
           {items.map((item, index) => (
             <li key={index} className="menu-item">
               <Link href={item.href}>
@@ -31,6 +31,7 @@ const SubMenu: React.FC<SubMenuProps> = ({ items, label, isOpen, onClick }) => {
 };
 
 export default SubMenu;
+
 
 
 

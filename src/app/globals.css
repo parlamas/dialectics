@@ -163,16 +163,17 @@ header {
 }
 
 .submenu-container a {
-  color: black;
+  color: black !important;
   text-decoration: none;
   display: block; /* Ensure the links are block elements */
   padding: 8px 12px; /* Add padding for better spacing */
 }
 
 .submenu-container a:hover {
-  background-color: yellowgreen; /* Slightly darker beige for hover effect */
-  color: black;
+  background-color: yellowgreen !important; /* Slightly darker beige for hover effect */
+  color: black !important;
 }
+
 
 .menu-item {
   font-size: 8pt;

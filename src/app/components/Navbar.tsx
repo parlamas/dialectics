@@ -80,11 +80,7 @@ const Navbar: React.FC = () => {
   ];
 
   const handleSubMenuClick = (label: string) => {
-    if (openSubMenu === label) {
-      setOpenSubMenu(null);
-    } else {
-      setOpenSubMenu(label);
-    }
+    setOpenSubMenu(openSubMenu === label ? null : label);
     setFormOpen(false); // Close the form when opening a submenu
     setMessage(null); // Clear message when submenu is clicked
   };
@@ -130,7 +126,7 @@ const Navbar: React.FC = () => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         menuRef.current && !menuRef.current.contains(event.target as Node) &&
-        formRef.current && !formRef.current.contains(event.target as Node)
+        (!formRef.current || !formRef.current.contains(event.target as Node))
       ) {
         setOpenSubMenu(null);
         setFormOpen(false);
@@ -238,3 +234,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
