@@ -14,6 +14,7 @@ const Navbar: React.FC = () => {
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null); // State to track the open submenu
   const [formOpen, setFormOpen] = useState(false); // State to track the form visibility
   const menuRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const philosophyItems = [
     { href: "/philosophy/dialectics", text: "Dialectics" },
@@ -88,7 +89,10 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (
+        menuRef.current && !menuRef.current.contains(event.target as Node) &&
+        formRef.current && !formRef.current.contains(event.target as Node)
+      ) {
         setOpenSubMenu(null);
         setFormOpen(false);
       }
@@ -146,7 +150,7 @@ const Navbar: React.FC = () => {
         </nav>
       </div>
       {formOpen && (
-        <div className="absolute top-16 left-0 right-0 bg-white text-black p-4 shadow-lg rounded mx-4 md:mx-auto md:w-1/2">
+        <div ref={formRef} className="absolute top-16 left-0 right-0 bg-white text-black p-4 shadow-lg rounded mx-4 md:mx-auto md:w-1/2">
           <h2>Content Request Form</h2>
           {/* Your form content here */}
           <form>
@@ -168,3 +172,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
