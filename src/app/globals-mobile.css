@@ -52,7 +52,7 @@
 }
 
 .mobile-menu a {
-  color: white;
+  color: gold;
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -76,7 +76,9 @@
 }
 
 .submenu-container a:hover {
-  background-color: yellowgreen;
+  background-color: gold;
+  color: blue;
+  font-weight: bold;
 }
 
 .menu-item.open + .submenu-container {

@@ -75,7 +75,87 @@ const NavbarMobile: React.FC = () => {
                 </ul>
               )}
             </li>
-            {/* Add similar structure for other menu items like Music, Physical Education, etc. */}
+            <li>
+              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Music')}>
+                Music
+              </button>
+              {openSubMenu === 'Music' && (
+                <ul className="bg-gold mt-2 ml-5 space-y-2">
+                  <li><Link href="/music/nature" onClick={closeMenus}>Nature</Link></li>
+                  <li><Link href="/music/speech" onClick={closeMenus}>Speech</Link></li>
+                  <li><Link href="/music/metron" onClick={closeMenus}>Metron</Link></li>
+                  <li><Link href="/music/playing" onClick={closeMenus}>Playing</Link></li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Physical Education')}>
+                Physical Education
+              </button>
+              {openSubMenu === 'Physical Education' && (
+                <ul className="bg-gold mt-2 ml-5 space-y-2">
+                  <li><Link href="/physical-education/mind" onClick={closeMenus}>Mind</Link></li>
+                  <li><Link href="/physical-education/body" onClick={closeMenus}>Body</Link></li>
+                  <li><Link href="/physical-education/beauty" onClick={closeMenus}>Beauty</Link></li>
+                  <li><Link href="/physical-education/discipline" onClick={closeMenus}>Discipline</Link></li>
+                  <li><Link href="/physical-education/skill" onClick={closeMenus}>As a Skill</Link></li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Social Skills')}>
+                Social Skills
+              </button>
+              {openSubMenu === 'Social Skills' && (
+                <ul className="bg-gold mt-2 ml-5 space-y-2">
+                  <li><Link href="/social-skills/family" onClick={closeMenus}>Family</Link></li>
+                  <li><Link href="/social-skills/friends" onClick={closeMenus}>Friends</Link></li>
+                  <li><Link href="/social-skills/lovers" onClick={closeMenus}>Lovers</Link></li>
+                  <li><Link href="/social-skills/work" onClick={closeMenus}>Work</Link></li>
+                  <li><Link href="/social-skills/army" onClick={closeMenus}>The Army</Link></li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Languages')}>
+                Languages
+              </button>
+              {openSubMenu === 'Languages' && (
+                <ul className="bg-gold mt-2 ml-5 space-y-2">
+                  <li><Link href="/languages/classical-greek" onClick={closeMenus}>Classical Greek</Link></li>
+                  <li><Link href="/languages/modern-greek" onClick={closeMenus}>Modern Greek</Link></li>
+                  <li><Link href="/languages/english" onClick={closeMenus}>English</Link></li>
+                  <li><Link href="/languages/spanish" onClick={closeMenus}>Spanish</Link></li>
+                  <li><Link href="/languages/danish" onClick={closeMenus}>Danish</Link></li>
+                  <li><Link href="/languages/chinese" onClick={closeMenus}>Chinese</Link></li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Physics')}>
+                Physics
+              </button>
+              {openSubMenu === 'Physics' && (
+                <ul className="bg-gold mt-2 ml-5 space-y-2">
+                  <li><Link href="/physics/classical" onClick={closeMenus}>Classical</Link></li>
+                  <li><Link href="/physics/quantum" onClick={closeMenus}>Quantum</Link></li>
+                  <li><Link href="/physics/chemistry" onClick={closeMenus}>Chemistry</Link></li>
+                </ul>
+              )}
+            </li>
+            <li>
+              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Math')}>
+                Math
+              </button>
+              {openSubMenu === 'Math' && (
+                <ul className="bg-gold mt-2 ml-5 space-y-2">
+                  <li><Link href="/math/perfect-numbers" onClick={closeMenus}>Perfect Numbers</Link></li>
+                  <li><Link href="/math/prime-numbers" onClick={closeMenus}>Prime Numbers</Link></li>
+                  <li><Link href="/math/friendly-numbers" onClick={closeMenus}>Friendly Numbers</Link></li>
+                  <li><Link href="/math/trigonometry" onClick={closeMenus}>Trigonometry</Link></li>
+                </ul>
+              )}
+            </li>
             <li>
               <Link href="#" className="block w-full text-left" onClick={handleFormToggle}>
                 Content Request
@@ -143,4 +223,5 @@ const NavbarMobile: React.FC = () => {
 };
 
 export default NavbarMobile;
+
 
