@@ -29,13 +29,38 @@ const Navbar: React.FC = () => {
     setFormOpen(!formOpen);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setTimeout(() => {
-      alert('Email sent successfully!');
-      setFormOpen(false);
-    }, 1000);
-  };
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const request = formData.get('request') as string;
+
+    try {
+        const response = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, request }),
+        });
+
+        if (response.ok) {
+            alert('Email sent successfully!');
+            setFormOpen(false);
+        } else {
+            alert('Failed to send email. Please try again later.');
+        }
+    } catch (error) {
+        console.error('Error sending email:', error);
+        alert('An error occurred. Please try again later.');
+    }
+};
+
+
 
   return (
     <header className="navbar bg-cyan-950 text-white fixed w-full top-0 left-0 z-50 text-[8pt]">
