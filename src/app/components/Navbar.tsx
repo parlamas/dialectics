@@ -1,137 +1,347 @@
 // src/app/components/Navbar.tsx
 'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import { UserButton, useAuth } from "@clerk/nextjs";
-import Link from "next/link";
-import SubMenu from "./SubMenu";
+import React, { useState } from 'react';
+import { UserButton, useAuth } from '@clerk/nextjs';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const { userId } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [formOpen, setFormOpen] = useState(false);
 
-  const handleSubMenuClick = (label: string) => {
+  const handleSubMenuToggle = (label: string) => {
     setOpenSubMenu(openSubMenu === label ? null : label);
   };
 
-  const handleMenuClick = () => {
+  const handleMobileMenuToggle = () => {
     setMenuOpen(!menuOpen);
     setOpenSubMenu(null);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setMenuOpen(false);
-        setOpenSubMenu(null);
-      }
-    };
+  const closeMenus = () => {
+    setOpenSubMenu(null);
+    setMenuOpen(false);
+  };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
+  const handleFormToggle = () => {
+    setFormOpen(!formOpen);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setTimeout(() => {
+      alert('Email sent successfully!');
+      setFormOpen(false);
+    }, 1000);
+  };
 
   return (
-    <header className="navbar">
-      <div ref={menuRef} className="container mx-auto flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold">
+    <header className="navbar bg-cyan-950 text-white fixed w-full top-0 left-0 z-50 text-[8pt]">
+      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        <Link href="/" className="text-lg font-semibold text-[8pt]">
           Home
         </Link>
         <nav className="hidden md:flex space-x-4">
-          <SubMenu items={[]} label="Philosophy" />
-          <SubMenu items={[]} label="History" />
-          <SubMenu items={[]} label="Music" />
-          <SubMenu items={[]} label="Physical Education" />
-          <SubMenu items={[]} label="Social Skills" />
-          <SubMenu items={[]} label="Languages" />
-          <SubMenu items={[]} label="Physics" />
-          <SubMenu items={[]} label="Math" />
+          {/* Philosophy Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('Philosophy')}>
+              Philosophy
+            </button>
+            {openSubMenu === 'Philosophy' && (
+              <div className="submenu-container">
+                <Link href="/philosophy/dialectics" className="block px-4 py-2" onClick={closeMenus}>
+                  Dialectics
+                </Link>
+                <Link href="/philosophy/horistics" className="block px-4 py-2" onClick={closeMenus}>
+                  Horistics
+                </Link>
+                <Link href="/philosophy/etymology" className="block px-4 py-2" onClick={closeMenus}>
+                  Etymology
+                </Link>
+                <Link href="/philosophy/ethics" className="block px-4 py-2" onClick={closeMenus}>
+                  Ethics
+                </Link>
+                <Link href="/philosophy/politics" className="block px-4 py-2" onClick={closeMenus}>
+                  Politics
+                </Link>
+                <Link href="/philosophy/economics" className="block px-4 py-2" onClick={closeMenus}>
+                  Economics
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* History Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('History')}>
+              History
+            </button>
+            {openSubMenu === 'History' && (
+              <div className="submenu-container">
+                <Link href="/history/classical-greek" className="block px-4 py-2" onClick={closeMenus}>
+                  Classical Greek History
+                </Link>
+                <Link href="/history/byzanium" className="block px-4 py-2" onClick={closeMenus}>
+                  Byzanium
+                </Link>
+                <Link href="/history/modern-greek" className="block px-4 py-2" onClick={closeMenus}>
+                  Modern Greek History
+                </Link>
+                <Link href="/history/cooking" className="block px-4 py-2" onClick={closeMenus}>
+                  Cooking
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Music Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('Music')}>
+              Music
+            </button>
+            {openSubMenu === 'Music' && (
+              <div className="submenu-container">
+                <Link href="/music/nature" className="block px-4 py-2" onClick={closeMenus}>
+                  Nature
+                </Link>
+                <Link href="/music/speech" className="block px-4 py-2" onClick={closeMenus}>
+                  Speech
+                </Link>
+                <Link href="/music/metron" className="block px-4 py-2" onClick={closeMenus}>
+                  Metron
+                </Link>
+                <Link href="/music/playing" className="block px-4 py-2" onClick={closeMenus}>
+                  Playing
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Physical Education Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('Physical Education')}>
+              Physical Education
+            </button>
+            {openSubMenu === 'Physical Education' && (
+              <div className="submenu-container">
+                <Link href="/physical-education/mind" className="block px-4 py-2" onClick={closeMenus}>
+                  Mind
+                </Link>
+                <Link href="/physical-education/body" className="block px-4 py-2" onClick={closeMenus}>
+                  Body
+                </Link>
+                <Link href="/physical-education/beauty" className="block px-4 py-2" onClick={closeMenus}>
+                  Beauty
+                </Link>
+                <Link href="/physical-education/discipline" className="block px-4 py-2" onClick={closeMenus}>
+                  Discipline
+                </Link>
+                <Link href="/physical-education/skill" className="block px-4 py-2" onClick={closeMenus}>
+                  As a Skill
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Social Skills Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('Social Skills')}>
+              Social Skills
+            </button>
+            {openSubMenu === 'Social Skills' && (
+              <div className="submenu-container">
+                <Link href="/social-skills/family" className="block px-4 py-2" onClick={closeMenus}>
+                  Family
+                </Link>
+                <Link href="/social-skills/friends" className="block px-4 py-2" onClick={closeMenus}>
+                  Friends
+                </Link>
+                <Link href="/social-skills/lovers" className="block px-4 py-2" onClick={closeMenus}>
+                  Lovers
+                </Link>
+                <Link href="/social-skills/work" className="block px-4 py-2" onClick={closeMenus}>
+                  Work
+                </Link>
+                <Link href="/social-skills/army" className="block px-4 py-2" onClick={closeMenus}>
+                  The Army
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Languages Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('Languages')}>
+              Languages
+            </button>
+            {openSubMenu === 'Languages' && (
+              <div className="submenu-container">
+                <Link href="/languages/classical-greek" className="block px-4 py-2" onClick={closeMenus}>
+                  Classical Greek
+                </Link>
+                <Link href="/languages/modern-greek" className="block px-4 py-2" onClick={closeMenus}>
+                  Modern Greek
+                </Link>
+                <Link href="/languages/english" className="block px-4 py-2" onClick={closeMenus}>
+                  English
+                </Link>
+                <Link href="/languages/spanish" className="block px-4 py-2" onClick={closeMenus}>
+                  Spanish
+                </Link>
+                <Link href="/languages/danish" className="block px-4 py-2" onClick={closeMenus}>
+                  Danish
+                </Link>
+                <Link href="/languages/chinese" className="block px-4 py-2" onClick={closeMenus}>
+                  Chinese
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Physics Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('Physics')}>
+              Physics
+            </button>
+            {openSubMenu === 'Physics' && (
+              <div className="submenu-container">
+                <Link href="/physics/classical" className="block px-4 py-2" onClick={closeMenus}>
+                  Classical
+                </Link>
+                <Link href="/physics/quantum" className="block px-4 py-2" onClick={closeMenus}>
+                  Quantum
+                </Link>
+                <Link href="/physics/chemistry" className="block px-4 py-2" onClick={closeMenus}>
+                  Chemistry
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Math Menu */}
+          <div className="relative">
+            <button className="menu-item" onClick={() => handleSubMenuToggle('Math')}>
+              Math
+            </button>
+            {openSubMenu === 'Math' && (
+              <div className="submenu-container">
+                <Link href="/math/perfect-numbers" className="block px-4 py-2" onClick={closeMenus}>
+                  Perfect Numbers
+                </Link>
+                <Link href="/math/prime-numbers" className="block px-4 py-2" onClick={closeMenus}>
+                  Prime Numbers
+                </Link>
+                <Link href="/math/friendly-numbers" className="block px-4 py-2" onClick={closeMenus}>
+                  Friendly Numbers
+                </Link>
+                <Link href="/math/trigonometry" className="block px-4 py-2" onClick={closeMenus}>
+                  Trigonometry
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Content Request Link */}
+          <Link href="#" className="block px-4 py-2 hover:text-gray-300 menu-item" onClick={handleFormToggle}>
+            Content Request
+          </Link>
+
+          {/* Sign In / Sign Up */}
           {!userId ? (
-            <div className="flex space-x-4">
-              <Link href="/sign-in" className="hover:text-gray-300">
-                Sign in
-              </Link>
-              <Link href="/sign-up" className="hover:text-gray-300">
-                Sign up
-              </Link>
-            </div>
+            <>
+              <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300">Sign in</Link>
+              <Link href="/sign-up" className="block px-4 py-2 hover:text-gray-300">Sign up</Link>
+            </>
           ) : (
             <div className="flex space-x-4 items-center">
-              <Link href="/profile" className="hover:text-gray-300">
-                Profile
-              </Link>
+              <Link href="/profile" className="block px-4 py-2 hover:text-gray-300">Profile</Link>
               <UserButton />
             </div>
           )}
         </nav>
-        <button className="md:hidden text-white" onClick={handleMenuClick}>
+
+        {/* Mobile Menu Button */}
+        <button className="md:hidden text-white" onClick={handleMobileMenuToggle}>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
-      <div className={`navbar-menu ${menuOpen ? 'active' : ''} md:hidden`}>
-        <div className="menu-container">
-          <Link href="/" className="menu-item" onClick={handleMenuClick}>
-            Home
-          </Link>
-          <Link href="/content-request" className="menu-item" onClick={handleMenuClick}>
-            Content Request
-          </Link>
-          {!userId ? (
-            <>
-              <Link href="/sign-in" className="menu-item" onClick={handleMenuClick}>
-                Sign in
-              </Link>
-              <Link href="/sign-up" className="menu-item" onClick={handleMenuClick}>
-                Sign up
-              </Link>
-            </>
-          ) : (
-            <Link href="/profile" className="menu-item" onClick={handleMenuClick}>
-              Profile
-            </Link>
-          )}
-          <button className="menu-item" onClick={() => handleSubMenuClick('Philosophy')}>
-            Philosophy
-          </button>
-          {openSubMenu === 'Philosophy' && (
-            <div className="submenu-container show">
-              <Link href="/philosophy/dialectics" className="menu-item" onClick={handleMenuClick}>
-                Dialectics
-              </Link>
-              <Link href="/philosophy/horistics" className="menu-item" onClick={handleMenuClick}>
-                Horistics
-              </Link>
-              {/* Add other submenu items */}
-            </div>
-          )}
-          <button className="menu-item" onClick={() => handleSubMenuClick('History')}>
-            History
-          </button>
-          {openSubMenu === 'History' && (
-            <div className="submenu-container show">
-              <Link href="/history/classical-greek" className="menu-item" onClick={handleMenuClick}>
-                Classical Greek History
-              </Link>
-              <Link href="/history/byzanium" className="menu-item" onClick={handleMenuClick}>
-                Byzanium
-              </Link>
-              {/* Add other submenu items */}
-            </div>
-          )}
-          {/* Repeat for other submenus */}
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden fixed top-0 left-0 w-3/12 h-full bg-darkgreen text-white p-4">
+          <button onClick={handleMobileMenuToggle} className="block mb-4">Close</button>
+          <Link href="/" className="block mb-4" onClick={handleMobileMenuToggle}>Home</Link>
+          {/* Add Mobile Submenu Items Here */}
         </div>
-      </div>
+      )}
+
+      {/* Content Request Form */}
+      {formOpen && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
+          <div className="bg-white p-6 rounded shadow-lg">
+            <h2 className="text-lg font-semibold mb-4">Content Request Form</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="name"
+                  type="text"
+                  placeholder="Your name"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="email"
+                  type="email"
+                  placeholder="Your email"
+                  required
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="request">
+                  Request
+                </label>
+                <textarea
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="request"
+                  placeholder="Your request"
+                  required
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="submit"
+                >
+                  Submit
+                </button>
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button"
+                  onClick={handleFormToggle}
+                >
+                  Close Form
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
 
 export default Navbar;
-
-
 

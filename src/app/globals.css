@@ -1,47 +1,36 @@
 /* src/app/globals.css */
-/* Tailwind CSS Base, Components, and Utilities */
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Desktop Styles */
 @media (min-width: 769px) {
-  header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 50;
-  }
-
   .navbar {
-    @apply bg-cyan-950 text-white rounded-b-xl shadow-md;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
+    background-color: #006400;
   }
 
-  .navbar a {
-    @apply text-white hover:text-gray-300;
-  }
-
-  .menu-container {
+  .menu-item {
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
     position: relative;
   }
 
   .submenu-container {
-    display: none;
-    position: absolute;
     background-color: gold;
     color: black;
+    display: none;
+    position: absolute;
+    top: 100%; /* Ensures submenu is directly below the menu item */
+    left: 0;
     padding: 10px;
     border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     z-index: 100;
-    top: 100%;
-    left: 0;
   }
 
+  .menu-item:focus + .submenu-container,
   .menu-item:hover + .submenu-container,
   .submenu-container:hover {
     display: block;
@@ -49,108 +38,38 @@
 
   .submenu-container a {
     color: black;
-    text-align: left;
-    padding: 5px 10px;
     display: block;
+    padding: 5px 10px;
   }
 
   .submenu-container a:hover {
-    background-color: yellowgreen;
-  }
-
-  .navbar-menu {
-    display: none;
+    background-color: gold;
+    color: blue;
+    font-weight: bold;
   }
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-  header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    background-color: darkgreen;
-  }
-
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-  }
-
-  .navbar .menu {
-    display: none;
-  }
-
-  .navbar .menu.active {
-    display: block;
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    width: 30%;
     background-color: darkgreen;
-    padding: 10px;
-    height: auto;
-    max-height: calc(100vh - 60px);
-    overflow-y: auto;
-    z-index: 100;
   }
 
   .submenu-container {
-    display: none;
     background-color: gold;
-    padding-left: 5px;
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    width: 30%;
-    z-index: 100;
-  }
-
-  .submenu-container.show {
-    display: block;
+    color: black;
+    padding: 5px;
   }
 
   .submenu-container a {
     color: black;
-    padding: 8px 12px;
-    text-align: left;
     display: block;
+    padding: 5px 10px;
   }
 
   .submenu-container a:hover {
-    background-color: yellowgreen;
-  }
-
-  .navbar-menu {
-    display: none;
-  }
-
-  .navbar-menu.active {
-    display: block;
-    background-color: darkgreen;
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    width: 30%;
-    z-index: 100;
-    padding: 10px;
-  }
-
-  .navbar a,
-  .menu-item {
-    text-align: left;
-    margin-bottom: 1rem;
-    display: block;
+    background-color: gold;
+    font-weight: bold;
   }
 }
-
-
-
-
-
-
 
