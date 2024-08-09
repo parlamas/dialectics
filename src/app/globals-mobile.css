@@ -1,5 +1,7 @@
 /* src/app/globals-mobile.css */
 
+/* src/app/globals-mobile.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,6 +16,7 @@
   align-items: center;
 }
 
+/*
 .navbar .menu-toggle {
   background-color: transparent;
   border: none;
@@ -21,19 +24,21 @@
   cursor: pointer;
   font-size: 1.5rem;
 }
-
+*/
 .mobile-menu {
-  background-color: darkgreen; /* Background for the menu */
+  background-color: darkgreen; /* Set background color */
   position: fixed;
   top: 0;
   left: 0;
-  width: 30%; /* Menu width set to 30% */
+  width: 80%; /* Menu width */
+  max-width: 300px; /* Optional: Set a max width for the menu */
   height: 100%;
-  transform: translateX(0); /* Ensures menu is visible */
+  transform: translateX(0); /* Ensure menu is visible */
   transition: transform 0.3s ease-in-out;
   z-index: 100;
   padding: 20px;
-  color: white; /* Text color for the menu items */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  color: white; /* Ensure text color is white */
 }
 
 .mobile-menu ul {
@@ -47,11 +52,12 @@
 }
 
 .mobile-menu a {
-  color: white; /* White text color for menu items */
+  color: white; /* Set text color */
   text-decoration: none;
   display: block;
   padding: 10px;
   border-radius: 5px;
+  background-color: darkgreen; /* Ensure background color */
 }
 
 .mobile-menu a:hover {
@@ -59,21 +65,22 @@
 }
 
 .submenu-container {
-  background-color: gold; /* Background for submenu */
+  background-color: gold; /* Set submenu background color */
   padding: 5px;
   margin-top: 10px;
   display: none;
 }
 
 .submenu-container a {
-  color: black; /* Black text color for submenu items */
+  color: black; /* Ensure submenu text color is black */
   padding: 10px;
+  background-color: gold; /* Set submenu background color */
 }
 
 .submenu-container a:hover {
-  background-color: gold; /* Gold background on hover */
-  color: blue; /* Blue text color on hover */
-  font-weight: bold; /* Bold text on hover */
+  background-color: gold;
+  color: blue;
+  font-weight: bold;
 }
 
 .menu-item.open + .submenu-container {
