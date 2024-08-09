@@ -29,6 +29,37 @@ const NavbarMobile: React.FC = () => {
     setMenuOpen(false);
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const request = formData.get('request') as string;
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, request }),
+      });
+
+      if (response.ok) {
+        alert('Email sent successfully!');
+        setFormOpen(false);
+      } else {
+        alert('Failed to send email. Please try again later.');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('An error occurred. Please try again later.');
+    }
+  };
+
   return (
     <header className="navbar bg-darkgreen text-white fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -47,115 +78,7 @@ const NavbarMobile: React.FC = () => {
         <div className="fixed top-0 left-0 w-[30%] h-full bg-darkgreen text-white p-4" style={{ marginLeft: '20px' }}>
           <button onClick={handleMenuToggle} className="block mb-4">Close</button>
           <ul className="space-y-2">
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Philosophy')}>
-                Philosophy
-              </button>
-              {openSubMenu === 'Philosophy' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/philosophy/dialectics" onClick={closeMenus}>Dialectics</Link></li>
-                  <li><Link href="/philosophy/horistics" onClick={closeMenus}>Horistics</Link></li>
-                  <li><Link href="/philosophy/etymology" onClick={closeMenus}>Etymology</Link></li>
-                  <li><Link href="/philosophy/ethics" onClick={closeMenus}>Ethics</Link></li>
-                  <li><Link href="/philosophy/politics" onClick={closeMenus}>Politics</Link></li>
-                  <li><Link href="/philosophy/economics" onClick={closeMenus}>Economics</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('History')}>
-                History
-              </button>
-              {openSubMenu === 'History' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/history/classical-greek" onClick={closeMenus}>Classical Greek History</Link></li>
-                  <li><Link href="/history/byzanium" onClick={closeMenus}>Byzanium</Link></li>
-                  <li><Link href="/history/modern-greek" onClick={closeMenus}>Modern Greek History</Link></li>
-                  <li><Link href="/history/cooking" onClick={closeMenus}>Cooking</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Music')}>
-                Music
-              </button>
-              {openSubMenu === 'Music' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/music/nature" onClick={closeMenus}>Nature</Link></li>
-                  <li><Link href="/music/speech" onClick={closeMenus}>Speech</Link></li>
-                  <li><Link href="/music/metron" onClick={closeMenus}>Metron</Link></li>
-                  <li><Link href="/music/playing" onClick={closeMenus}>Playing</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Physical Education')}>
-                Physical Education
-              </button>
-              {openSubMenu === 'Physical Education' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/physical-education/mind" onClick={closeMenus}>Mind</Link></li>
-                  <li><Link href="/physical-education/body" onClick={closeMenus}>Body</Link></li>
-                  <li><Link href="/physical-education/beauty" onClick={closeMenus}>Beauty</Link></li>
-                  <li><Link href="/physical-education/discipline" onClick={closeMenus}>Discipline</Link></li>
-                  <li><Link href="/physical-education/skill" onClick={closeMenus}>As a Skill</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Social Skills')}>
-                Social Skills
-              </button>
-              {openSubMenu === 'Social Skills' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/social-skills/family" onClick={closeMenus}>Family</Link></li>
-                  <li><Link href="/social-skills/friends" onClick={closeMenus}>Friends</Link></li>
-                  <li><Link href="/social-skills/lovers" onClick={closeMenus}>Lovers</Link></li>
-                  <li><Link href="/social-skills/work" onClick={closeMenus}>Work</Link></li>
-                  <li><Link href="/social-skills/army" onClick={closeMenus}>The Army</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Languages')}>
-                Languages
-              </button>
-              {openSubMenu === 'Languages' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/languages/classical-greek" onClick={closeMenus}>Classical Greek</Link></li>
-                  <li><Link href="/languages/modern-greek" onClick={closeMenus}>Modern Greek</Link></li>
-                  <li><Link href="/languages/english" onClick={closeMenus}>English</Link></li>
-                  <li><Link href="/languages/spanish" onClick={closeMenus}>Spanish</Link></li>
-                  <li><Link href="/languages/danish" onClick={closeMenus}>Danish</Link></li>
-                  <li><Link href="/languages/chinese" onClick={closeMenus}>Chinese</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Physics')}>
-                Physics
-              </button>
-              {openSubMenu === 'Physics' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/physics/classical" onClick={closeMenus}>Classical</Link></li>
-                  <li><Link href="/physics/quantum" onClick={closeMenus}>Quantum</Link></li>
-                  <li><Link href="/physics/chemistry" onClick={closeMenus}>Chemistry</Link></li>
-                </ul>
-              )}
-            </li>
-            <li>
-              <button className="block w-full text-left" onClick={() => handleSubMenuToggle('Math')}>
-                Math
-              </button>
-              {openSubMenu === 'Math' && (
-                <ul className="bg-gold mt-2 ml-5 space-y-2">
-                  <li><Link href="/math/perfect-numbers" onClick={closeMenus}>Perfect Numbers</Link></li>
-                  <li><Link href="/math/prime-numbers" onClick={closeMenus}>Prime Numbers</Link></li>
-                  <li><Link href="/math/friendly-numbers" onClick={closeMenus}>Friendly Numbers</Link></li>
-                  <li><Link href="/math/trigonometry" onClick={closeMenus}>Trigonometry</Link></li>
-                </ul>
-              )}
-            </li>
+            {/* Add your menu items and submenus here */}
             <li>
               <Link href="#" className="block w-full text-left" onClick={handleFormToggle}>
                 Content Request
@@ -170,7 +93,7 @@ const NavbarMobile: React.FC = () => {
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg">
             <h2 className="text-lg font-semibold mb-4">Content Request Form</h2>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                   Name
@@ -179,6 +102,7 @@ const NavbarMobile: React.FC = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="name"
                   type="text"
+                  name="name"
                   placeholder="Your name"
                   required
                 />
@@ -191,6 +115,7 @@ const NavbarMobile: React.FC = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="Your email"
                   required
                 />
@@ -202,6 +127,7 @@ const NavbarMobile: React.FC = () => {
                 <textarea
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="request"
+                  name="request"
                   placeholder="Your request"
                   required
                 />
@@ -223,5 +149,3 @@ const NavbarMobile: React.FC = () => {
 };
 
 export default NavbarMobile;
-
-

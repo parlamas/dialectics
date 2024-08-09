@@ -1,5 +1,5 @@
 /* src/app/globals-mobile.css */
-/* src/app/globals-mobile.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,22 +23,17 @@
 }
 
 .mobile-menu {
-  background-color: darkgreen;
+  background-color: darkgreen; /* Background for the menu */
   position: fixed;
   top: 0;
   left: 0;
-  width: 80%;
-  max-width: 300px; /* Optional: Set a max width for the menu */
+  width: 30%; /* Menu width set to 30% */
   height: 100%;
-  transform: translateX(-100%);
+  transform: translateX(0); /* Ensures menu is visible */
   transition: transform 0.3s ease-in-out;
   z-index: 100;
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.mobile-menu.open {
-  transform: translateX(0);
+  color: white; /* Text color for the menu items */
 }
 
 .mobile-menu ul {
@@ -52,7 +47,7 @@
 }
 
 .mobile-menu a {
-  color: gold;
+  color: white; /* White text color for menu items */
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -64,21 +59,21 @@
 }
 
 .submenu-container {
-  background-color: gold;
+  background-color: gold; /* Background for submenu */
   padding: 5px;
   margin-top: 10px;
   display: none;
 }
 
 .submenu-container a {
-  color: black;
+  color: black; /* Black text color for submenu items */
   padding: 10px;
 }
 
 .submenu-container a:hover {
-  background-color: gold;
-  color: blue;
-  font-weight: bold;
+  background-color: gold; /* Gold background on hover */
+  color: blue; /* Blue text color on hover */
+  font-weight: bold; /* Bold text on hover */
 }
 
 .menu-item.open + .submenu-container {
