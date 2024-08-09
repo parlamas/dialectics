@@ -1,5 +1,7 @@
 /* src/app/globals.css */
 /* Tailwind CSS Base, Components, and Utilities */
+/* src/app/globals.css */
+/* Tailwind CSS Base, Components, and Utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -111,6 +113,7 @@ header {
   @media (max-width: 768px) {
     .navbar {
       @apply p-4; /* Adjust padding for smaller screens */
+      width: 100%;
     }
 
     .navbar .menu {
@@ -152,7 +155,11 @@ header {
     border-radius: 5px; /* Optional: for rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: for subtle shadow */
     z-index: 100; /* Ensure submenus have a higher z-index */
-    position: absolute; /* Ensure proper positioning */
+    position: fixed;
+    top: 60px; /* Adjust to your navbar's height */
+    left: 20px;
+    width: 25%; /* Covers 25% of the screen */
+    padding-left: 20px; /* Ensure text is aligned left */
   }
 
   .submenu-container a {
@@ -160,11 +167,12 @@ header {
     text-decoration: none;
     display: block; /* Ensure the links are block elements */
     padding: 8px 12px; /* Add padding for better spacing */
+    text-align: left; /* Ensure text is aligned left */
   }
 
   .submenu-container a:hover {
     background-color: yellowgreen !important; /* Slightly darker beige for hover effect */
-    color: black !important;
+    color: black !important; /* Keep text black on hover */
   }
 
   .menu-item {
@@ -187,8 +195,7 @@ header {
 /* Adjustments for mobile devices */
 @media (max-width: 768px) {
   .navbar {
-    width: 25%;
-    margin-left: 20px; /* Add margin to the left */
+    width: 100%;
   }
 
   .navbar .menu {
@@ -198,19 +205,20 @@ header {
     background-color: #1f2937;
     z-index: 50;
     position: fixed;
-    top: 50px; /* Position below the navbar */
-    left: 20px;
-    width: 75%;
+    top: 0; /* Position at the top */
+    left: 0;
+    width: 100%; /* Full width on mobile */
   }
 
   .submenu-container {
-    position: fixed;
-    top: 100px;
-    left: 20px;
-    right: 20px;
-    max-height: 75%;
-    overflow-y: auto;
-    z-index: 60; /* Ensure submenus are above other content */
+    width: 25%; /* Covers 25% of the screen */
+    left: 20px; /* Align to the left with 20px margin */
+    padding-left: 20px; /* Add padding to align text to the left */
+  }
+
+  .submenu-container a {
+    color: black !important; /* Ensure text is always black */
+    text-align: left; /* Ensure text is aligned left */
   }
 
   .form-container {
@@ -218,3 +226,4 @@ header {
     padding: 1rem;
   }
 }
+

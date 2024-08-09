@@ -1,4 +1,4 @@
-// src/app/components/Navba
+// src/app/components/Navbar.tsx
 'use client';
 
 import React, { useState, useEffect, useRef } from "react";
@@ -234,7 +234,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-
-
-
 
