@@ -1,4 +1,5 @@
 // src/app/components/Navbar.tsx
+
 'use client';
 
 import React, { useState } from 'react';
@@ -31,20 +32,43 @@ const Navbar: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setTimeout(() => {
-      alert('Email sent successfully!');
-      setFormOpen(false);
-    }, 1000);
-  };
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const request = formData.get('request') as string;
+
+    fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, request }),
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Email sent successfully!');
+            setFormOpen(false);
+        } else {
+            alert('Failed to send email. Please try again later.');
+        }
+    })
+    .catch(error => {
+        console.error('Error sending email:', error);
+        alert('An error occurred. Please try again later.');
+    });
+};
+
 
   return (
-    <header className="navbar bg-cyan-950 text-white fixed w-full top-0 left-0 z-50 text-[8pt]">
+    <header className="navbar bg-cyan-950 text-white fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold text-[8pt]">
+        <Link href="/" className="text-lg font-semibold">
           Home
         </Link>
         <nav className="hidden md:flex space-x-4">
-          {/* Philosophy Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('Philosophy')}>
               Philosophy
@@ -73,7 +97,6 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* History Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('History')}>
               History
@@ -96,7 +119,6 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Music Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('Music')}>
               Music
@@ -119,7 +141,6 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Physical Education Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('Physical Education')}>
               Physical Education
@@ -145,7 +166,6 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Social Skills Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('Social Skills')}>
               Social Skills
@@ -171,7 +191,6 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Languages Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('Languages')}>
               Languages
@@ -200,7 +219,6 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Physics Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('Physics')}>
               Physics
@@ -220,7 +238,6 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Math Menu */}
           <div className="relative">
             <button className="menu-item" onClick={() => handleSubMenuToggle('Math')}>
               Math
@@ -243,12 +260,10 @@ const Navbar: React.FC = () => {
             )}
           </div>
 
-          {/* Content Request Link */}
           <Link href="#" className="block px-4 py-2 hover:text-gray-300 menu-item" onClick={handleFormToggle}>
             Content Request
           </Link>
 
-          {/* Sign In / Sign Up */}
           {!userId ? (
             <>
               <Link href="/sign-in" className="block px-4 py-2 hover:text-gray-300">Sign in</Link>
@@ -262,7 +277,6 @@ const Navbar: React.FC = () => {
           )}
         </nav>
 
-        {/* Mobile Menu Button */}
         <button className="md:hidden text-white" onClick={handleMobileMenuToggle}>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -270,7 +284,6 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden fixed top-0 left-0 w-3/12 h-full bg-darkgreen text-white p-4">
           <button onClick={handleMobileMenuToggle} className="block mb-4">Close</button>
@@ -279,7 +292,6 @@ const Navbar: React.FC = () => {
         </div>
       )}
 
-      {/* Content Request Form */}
       {formOpen && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg">
@@ -293,6 +305,7 @@ const Navbar: React.FC = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="name"
                   type="text"
+                  name="name"
                   placeholder="Your name"
                   required
                 />
@@ -305,6 +318,7 @@ const Navbar: React.FC = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="Your email"
                   required
                 />
@@ -316,6 +330,7 @@ const Navbar: React.FC = () => {
                 <textarea
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="request"
+                  name="request"
                   placeholder="Your request"
                   required
                 />
@@ -337,3 +352,5 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
+
