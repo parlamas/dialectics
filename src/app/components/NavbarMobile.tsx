@@ -76,7 +76,7 @@ const NavbarMobile: React.FC = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         
-    <nav className="bg-green-600 text-white fixed top-0 left-0 h-full w-2/5 z-40 p-4 overflow-y-auto">
+    <nav className="bg-green-600 text-white fixed top-0 left-0 h-full w-1/2 z-40 p-4 overflow-y-auto">
     {/* Home Link */}
     <Link href="/" className="block py-2 text-left" onClick={closeMenus}>
       Home
