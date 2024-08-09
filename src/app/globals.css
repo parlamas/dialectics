@@ -4,179 +4,151 @@
 @tailwind components;
 @tailwind utilities;
 
-.menu-item {
-  font-size: 8pt;
-}
-
-/* Define custom properties for theming */
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-/* Navbar Styles */
-header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 50;
-}
-
-.burger-menu {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 100;
-}
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background-color: #1f2937;
-  z-index: 49;
-}
-
-.text-8pt {
-  font-size: 8pt;
-}
-
-body {
-  color: var(--foreground-rgb);
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-}
-
-/* Form Higher Z-Index */
-form {
-  position: relative;
-  z-index: 1000;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+/* Desktop Styles */
+@media (min-width: 769px) {
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
   }
 
   .navbar {
     @apply bg-cyan-950 text-white rounded-b-xl shadow-md;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
   }
 
   .navbar a {
     @apply text-white hover:text-gray-300;
   }
 
-  /* Desktop Styles */
-  @media (min-width: 769px) {
-    .navbar .menu {
-      @apply flex;
-    }
-
-    .submenu-container {
-      position: absolute;
-      background-color: gold;
-      color: black;
-      padding: 10px;
-      border-radius: 5px;
-      z-index: 100;
-      display: none; /* Hidden by default */
-    }
-
-    .submenu-container.show {
-      display: block;
-    }
-
-    .submenu-container a {
-      color: black;
-      text-align: left;
-      padding: 5px 10px;
-      display: block;
-    }
-
-    .submenu-container a:hover {
-      background-color: yellowgreen;
-      color: black;
-    }
-
-    .menu-item:hover + .submenu-container {
-      display: block;
-    }
+  .menu-container {
+    position: relative;
   }
 
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    .navbar {
-      background-color: darkgreen; /* Burger Menu Background */
-    }
+  .submenu-container {
+    display: none;
+    position: absolute;
+    background-color: gold;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 100;
+    top: 100%;
+    left: 0;
+  }
 
-    .navbar .menu {
-      display: none;
-    }
+  .menu-item:hover + .submenu-container,
+  .submenu-container:hover {
+    display: block;
+  }
 
-    .navbar .menu.active {
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 20px;
-      width: 30%;
-      background-color: darkgreen;
-      padding: 10px;
-      height: 100vh;
-      overflow-y: auto;
-    }
+  .submenu-container a {
+    color: black;
+    text-align: left;
+    padding: 5px 10px;
+    display: block;
+  }
 
-    .submenu-container {
-      background-color: gold;
-      padding-left: 5px;
-      display: none;
-      position: fixed;
-      top: 60px;
-      left: 20px;
-      width: 30%;
-      z-index: 100;
-      overflow-y: auto;
-    }
+  .submenu-container a:hover {
+    background-color: yellowgreen;
+  }
 
-    .submenu-container.show {
-      display: block;
-    }
-
-    .submenu-container a {
-      color: black;
-      padding: 8px 12px;
-      text-align: left;
-    }
-
-    .submenu-container a:hover {
-      background-color: yellowgreen;
-      color: black;
-    }
+  .navbar-menu {
+    display: none;
   }
 }
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background-color: darkgreen;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .navbar .menu {
+    display: none;
+  }
+
+  .navbar .menu.active {
+    display: block;
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    width: 30%;
+    background-color: darkgreen;
+    padding: 10px;
+    height: auto;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  .submenu-container {
+    display: none;
+    background-color: gold;
+    padding-left: 5px;
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    width: 30%;
+    z-index: 100;
+  }
+
+  .submenu-container.show {
+    display: block;
+  }
+
+  .submenu-container a {
+    color: black;
+    padding: 8px 12px;
+    text-align: left;
+    display: block;
+  }
+
+  .submenu-container a:hover {
+    background-color: yellowgreen;
+  }
+
+  .navbar-menu {
+    display: none;
+  }
+
+  .navbar-menu.active {
+    display: block;
+    background-color: darkgreen;
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    width: 30%;
+    z-index: 100;
+    padding: 10px;
+  }
+
+  .navbar a,
+  .menu-item {
+    text-align: left;
+    margin-bottom: 1rem;
+    display: block;
+  }
+}
+
+
 
 
 
