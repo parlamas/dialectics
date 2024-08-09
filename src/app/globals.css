@@ -163,7 +163,7 @@ header {
   }
 
   .submenu-container a:hover {
-    background-color: gold !important; /* Slightly darker beige for hover effect */
+    background-color: yellowgreen !important; /* Slightly darker beige for hover effect */
     color: black !important;
   }
 
@@ -184,24 +184,37 @@ header {
   }
 }
 
-/* Reduce form size for mobile devices */
+/* Adjustments for mobile devices */
 @media (max-width: 768px) {
+  .navbar {
+    width: 25%;
+    margin-left: 20px; /* Add margin to the left */
+  }
+
+  .navbar .menu {
+    height: auto; /* Ensure the menu doesn't cover the whole screen */
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: #1f2937;
+    z-index: 50;
+    position: fixed;
+    top: 50px; /* Position below the navbar */
+    left: 20px;
+    width: 75%;
+  }
+
+  .submenu-container {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    right: 20px;
+    max-height: 75%;
+    overflow-y: auto;
+    z-index: 60; /* Ensure submenus are above other content */
+  }
+
   .form-container {
     width: 80%; /* Reduce form size on smaller screens */
     padding: 1rem;
   }
-
-  .navbar .menu {
-    padding-left: 1rem; /* Add padding to the left of the menu */
-  }
-
-  .submenu-container {
-    position: fixed; /* Make sure submenus are fixed on mobile */
-    top: 50px; /* Position below the navbar */
-    left: 0;
-    right: 0;
-    z-index: 50; /* Ensure it appears above other content */
-  }
 }
-
-
