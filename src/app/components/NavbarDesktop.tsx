@@ -318,12 +318,13 @@ const NavbarDesktop: React.FC = () => {
                   Request
                 </label>
                 <textarea
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="request"
-                  name="request"
-                  placeholder="Your request"
-                  required
-                />
+      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      id="request"
+      name="request"
+      placeholder="Your request"
+      maxLength={100} /* Limits the input to 100 characters */
+      required
+    />
               </div>
               <div className="flex items-center justify-between">
                 <button
