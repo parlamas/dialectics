@@ -1,7 +1,5 @@
 /* src/app/globals.css */
 /* Tailwind CSS Base, Components, and Utilities */
-/* src/app/globals.css */
-/* Tailwind CSS Base, Components, and Utilities */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -52,15 +50,6 @@ nav {
 
 .text-8pt {
   font-size: 8pt;
-}
-
-/* Centering container with top margin */
-.center-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Align items to the start (top) */
-  min-height: 100vh;
-  padding-top: 50px; /* Adjust this value to move the content down */
 }
 
 body {
@@ -131,22 +120,39 @@ header {
     }
   }
 
-  .speech-bubble {
-    position: absolute;
-    top: -20px; /* Adjust to move the bubble higher or lower */
-    left: 60px; /* Adjust to move the bubble left or right */
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    border-radius: 5px;
-    width: 150px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
   .navbar {
     z-index: 40; /* Ensure navbar has a lower z-index */
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .menu-container {
+    background-color: gold;
+    color: black;
+    border-radius: 5px; /* Optional: for rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: for subtle shadow */
+    z-index: 100; /* Ensure submenus have a higher z-index */
+    position: fixed;
+    top: 60px; /* Adjust to your navbar's height */
+    left: 20px;
+    width: 30%; /* Covers 30% of the screen */
+    padding-left: 5px; /* Ensure text is aligned left */
+    height: auto; /* Auto height to fit content */
+    overflow-y: auto;
+  }
+
+  .menu-container a {
+    color: black !important;
+    text-decoration: none;
+    display: block; /* Ensure the links are block elements */
+    padding: 8px 12px; /* Add padding for better spacing */
+    text-align: left; /* Ensure text is aligned left */
+  }
+
+  .menu-container a:hover {
+    background-color: yellowgreen !important; /* Slightly darker beige for hover effect */
+    color: black !important; /* Keep text black on hover */
   }
 
   .submenu-container {
@@ -158,8 +164,10 @@ header {
     position: fixed;
     top: 60px; /* Adjust to your navbar's height */
     left: 20px;
-    width: 25%; /* Covers 25% of the screen */
-    padding-left: 20px; /* Ensure text is aligned left */
+    width: 30%; /* Covers 30% of the screen */
+    padding-left: 5px; /* Ensure text is aligned left */
+    height: auto; /* Auto height to fit content */
+    overflow-y: auto;
   }
 
   .submenu-container a {
@@ -192,38 +200,5 @@ header {
   }
 }
 
-/* Adjustments for mobile devices */
-@media (max-width: 768px) {
-  .navbar {
-    width: 100%;
-  }
 
-  .navbar .menu {
-    height: auto; /* Ensure the menu doesn't cover the whole screen */
-    max-height: 100vh;
-    overflow-y: auto;
-    background-color: #1f2937;
-    z-index: 50;
-    position: fixed;
-    top: 0; /* Position at the top */
-    left: 0;
-    width: 100%; /* Full width on mobile */
-  }
-
-  .submenu-container {
-    width: 25%; /* Covers 25% of the screen */
-    left: 20px; /* Align to the left with 20px margin */
-    padding-left: 20px; /* Add padding to align text to the left */
-  }
-
-  .submenu-container a {
-    color: black !important; /* Ensure text is always black */
-    text-align: left; /* Ensure text is aligned left */
-  }
-
-  .form-container {
-    width: 80%; /* Reduce form size on smaller screens */
-    padding: 1rem;
-  }
-}
 
